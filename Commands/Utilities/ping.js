@@ -1,0 +1,16 @@
+const { MessageEmbed } = require('discord.js')
+
+module.exports = {
+    name: 'ping',
+    aliases: ['latency', 'lag'],
+    permissions: 'ADMINISTRATOR',
+    description: "Sends the client's ping",
+    cooldown: 5,
+
+    execute(message, args, commandNam, client, Discord) {
+        const Response = new MessageEmbed()
+            .setColor('GREEN')
+            .setDescription(`🏓 | ${client.ws.ping} ms`);
+        message.channel.send({ embeds: [Response] });
+    }
+};

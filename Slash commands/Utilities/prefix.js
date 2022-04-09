@@ -1,5 +1,4 @@
 require('dotenv').config();
-const prefix = process.env.PREFIX;
 
 const { SlashCommandBuilder } = require('@discordjs/builders');
 
@@ -10,7 +9,7 @@ module.exports = {
 
     async execute(interaction) {
         interaction.reply({
-            content: `Mój prefix to: \`${prefix}\``,
+            content: `Mój prefix to: \`${process.env.PREFIX}\``,
             ephemeral: true
         });
     }
