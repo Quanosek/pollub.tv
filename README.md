@@ -1,2 +1,1 @@
 # pollub.tv
-Discord bot
