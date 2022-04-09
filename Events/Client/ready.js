@@ -2,6 +2,8 @@ require('dotenv').config();
 const { REST } = require('@discordjs/rest');
 const { Routes } = require('discord-api-types/v10');
 
+const TOKEN = process.env.TOKEN;
+
 module.exports = {
     name: 'ready',
     once: true,
@@ -10,10 +12,9 @@ module.exports = {
         console.log(' > Bot is online.');
         client.user.setActivity('?help', { type: 'LISTENING' });
 
-
         const CLIENT_ID = client.user.id;
 
-        const rest = new REST({ version: '10' }).setToken(process.env.TOKEN);
+        const rest = new REST({ version: '10' }).setToken(TOKEN);
 
         (async() => {
             try {
