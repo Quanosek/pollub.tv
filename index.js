@@ -11,7 +11,7 @@ const client = new Discord.Client({ intents: 32767 });
 client.commands = new Discord.Collection();
 client.cooldowns = new Discord.Collection();
 
-['eventsHandler', 'commandsHandler', 'InteractionsHandler'].forEach(handler => {
+['eventsHandler', 'interactionsHandler'].forEach(handler => {
     require(`./Handlers/${handler}`)(client, Discord);
 });
 

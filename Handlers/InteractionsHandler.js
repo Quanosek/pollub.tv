@@ -6,7 +6,7 @@ module.exports = (client, Discord) => {
     for (const folder of commandFolders) {
 
         const commandFiles = fs
-            .readdirSync(`./Slash commands/${folder}`)
+            .readdirSync(`./Commands/${folder}`)
             .filter(file => file.endsWith('.js'));
 
         for (const file of commandFiles) {

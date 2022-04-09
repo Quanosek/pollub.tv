@@ -6,12 +6,12 @@ module.exports = {
 
         const command = interaction.client.commands.get(interaction.commandName);
 
-        if (!command) returnValue
+        if (!command) return;
 
         try {
             await command.execute(interaction);
-        } catch (err) {
-            if (err) console.error(err);
+        } catch (error) {
+            console.error(error);
 
             await interaction.reply({
                 content: "This command didn't work properly.",

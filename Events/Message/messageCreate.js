@@ -9,12 +9,16 @@ module.exports = {
             message.channel.type == 'DM'
         ) return;
 
+        console.log(' > wykryta komenda');
+
         const args = message.content.slice(Prefix.length).trim().split(/ +/);
         const commandName = args.shift().toLowerCase();
 
-        const command = client.commands.get(commandName);
+        const legacy_command = client.commands.get(commandName);
 
-        if (!(client.commands.has(commandName) || command)) return;
+        if (!(client.commands.has(commandName) || legacy_command)) return;
+
+        /*
 
         if (command.permissions) {
             const authorPerms = message.channel.permissionsFor(message.author);
@@ -57,10 +61,12 @@ module.exports = {
         timestamps.set(message.author.id, now);
         setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
 
+        */
         try {
-            command.execute(message, args, commandName, client, Discord);
+            legacy_command.execute(client, message, args);
         } catch (error) {
             console.error(error);
+
             const ErrorEmbed = new Discord.MessageEmbed()
                 .setColor('RED')
                 .setDescription('An Error happened while trying to run this command, chceck console for more details.');

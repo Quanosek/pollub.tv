@@ -1,18 +1,18 @@
 const fs = require('fs');
 
 module.exports = (client, Discord) => {
-    const commandFolders = fs.readdirSync('./Commands');
+    const legacy_commandFolders = fs.readdirSync('./Commands');
 
-    for (const folder of commandFolders) {
+    for (const legacy_folder of legacy_commandFolders) {
 
-        const commandFiles = fs
-            .readdirSync(`./Commands/${folder}`)
+        const legacy_commandFiles = fs
+            .readdirSync(`./Commands/${legacy_folder}`)
             .filter(file => file.endsWith('.js'));
 
-        for (const file of commandFiles) {
-            const command = require(`../Commands/${folder}/${file}`);
+        for (const legacy_file of legacy_commandFiles) {
+            const legacy_command = require(`../Commands/${legacy_folder}/${legacy_file}`);
 
-            client.commands.set(command.name, command);
+            client.commands.set(legacy_command.name, legacy_command);
         }
     }
 };
