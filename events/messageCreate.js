@@ -21,8 +21,6 @@ module.exports = {
 
         const command = client.commands.get('old' + commandName); // define new name in Colection
 
-        console.log(command);
-
         try {
             if (command.data) return; // reject interaction commands
             await command.execute(message, args); // create (OLD) command

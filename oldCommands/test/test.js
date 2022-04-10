@@ -6,7 +6,7 @@ module.exports = {
     description: 'test',
     usage: `${PREFIX}test`,
 
-    execute: async(message, args) => {
+    async execute(message, args) {
         await message.channel.send('Test!');
     },
 };

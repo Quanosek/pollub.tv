@@ -3,10 +3,10 @@ const PREFIX = process.env.PREFIX;
 
 module.exports = {
     name: 'ping',
-    description: 'ping-pong!',
+    description: 'Replies with Pong!',
     usage: `${PREFIX}ping`,
 
-    execute: async(message, args) => {
+    async execute(message, args) {
         await message.reply('(OLD) Pong!');
     },
 };
