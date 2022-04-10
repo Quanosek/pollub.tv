@@ -1,16 +1,15 @@
 require('dotenv').config();
-
 const { SlashCommandBuilder } = require('@discordjs/builders');
 
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('prefix')
-        .setDescription('Sprawdź prefix bota'),
+        .setDescription('Shows bot prefix'),
 
     async execute(interaction) {
-        interaction.reply({
-            content: `Mój prefix to: \`${process.env.PREFIX}\``,
-            ephemeral: true
+        await interaction.reply({
+            content: `My prefix is: \`${process.env.PREFIX}\``,
+            ephemeral: true,
         });
-    }
+    },
 };
