@@ -1,8 +1,11 @@
+/* IMPORT */
+
 const fs = require('fs');
+
+/* OLD COMMANDS HANDLER */
 
 module.exports = (client) => {
     client.handleOldCommands = async(commandFolders, path) => {
-        const commands = [];
 
         for (folder of commandFolders) {
             const commandFiles = fs
@@ -15,5 +18,5 @@ module.exports = (client) => {
                 client.commands.set(command.name, command);
             };
         };
-    }
-}
+    };
+};

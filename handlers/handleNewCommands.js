@@ -1,9 +1,13 @@
+/* IMPORT & DEFINE */
+
 const { REST } = require('@discordjs/rest');
 const { Routes } = require('discord-api-types/v10');
 const fs = require('fs');
 
 const CLIENT_ID = process.env.CLIENT_ID;
 const GUILD_ID = process.env.GUILD_ID;
+
+/* NEW COMMANDS HANDLER */
 
 module.exports = (client) => {
 
@@ -24,6 +28,8 @@ module.exports = (client) => {
             };
         };
 
+        /* register slash commands */
+
         const rest = new REST({ version: '10' }).setToken(process.env.TOKEN);
 
         (async() => {
@@ -32,12 +38,12 @@ module.exports = (client) => {
 
                 if (process.env.ENV === 'production') {
                     await rest.put(Routes.applicationCommand(CLIENT_ID), { body: commands });
-                    console.log('Successfully registered commands globally.');
+                    console.log('Successfully registered slash commands globally.');
                 } else {
                     await rest.put(Routes.applicationGuildCommands(CLIENT_ID, GUILD_ID), { body: commands });
-                    console.log('Successfully registered commands locally.');
+                    console.log('Successfully registered slash commands locally.');
                 };
-            } catch (err) {
+            } catch (err) { // error
                 if (err) console.error(err);
             }
         })();

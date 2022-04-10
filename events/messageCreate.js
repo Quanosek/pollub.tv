@@ -1,5 +1,9 @@
+/* IMPORT & DEFINE */
+
 require('dotenv').config();
 const PREFIX = process.env.PREFIX;
+
+/* (OLD) MESSAGE CREATE EVENT */
 
 module.exports = {
     name: 'messageCreate',
@@ -18,8 +22,9 @@ module.exports = {
         const command = client.commands.get(commandName);
 
         try {
-            await command.execute(message, args);
-        } catch (err) {
+            if (command.data) return; // reject interaction commands
+            await command.execute(message, args); // create (OLD) command
+        } catch (err) { // error
             if (err) {
                 console.error(err);
                 message.reply('There was an error while executing this command!');

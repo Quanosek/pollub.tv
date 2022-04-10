@@ -1,8 +1,12 @@
+/* IMPORT & DEFINE */
+
 require('dotenv').config();
 const fs = require('fs');
 
 const { Client, Collection } = require('discord.js');
 const client = new Client({ intents: 32767 });
+
+/* MAIN DEFINE */
 
 client.commands = new Collection();
 
@@ -17,14 +21,19 @@ const eventFiles = fs
 const newCommandFolders = fs.readdirSync('./newCommands');
 const oldCommandFolders = fs.readdirSync('./oldCommands');
 
+/* MAIN FUNCTION */
+
 (async() => {
+
     for (file of handlers) {
         require(`./handlers/${file}`)(client);
     };
+
+    /* all handlers */
 
     client.handleEvents(eventFiles, './events');
     client.handleNewCommands(newCommandFolders, './newCommands');
     client.handleOldCommands(oldCommandFolders, './oldCommands');
 
-    client.login(process.env.TOKEN);
+    client.login(process.env.TOKEN); // token
 })();
