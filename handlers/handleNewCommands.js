@@ -1,8 +1,13 @@
 /* IMPORT & DEFINE */
 
+require('dotenv').config();
+const fs = require('fs');
+const clr = require('colors');
+
 const { REST } = require('@discordjs/rest');
 const { Routes } = require('discord-api-types/v10');
-const fs = require('fs');
+
+const realDate = require('../functions/realDate.js')
 
 const CLIENT_ID = process.env.CLIENT_ID;
 const GUILD_ID = process.env.GUILD_ID;
@@ -34,14 +39,14 @@ module.exports = (client) => {
 
         (async() => {
             try {
-                console.log('Started refreshing application slash commands.');
+                console.log(clr.brightCyan(`[${realDate()}]`) + ' Started refreshing slash commands...');
 
                 if (process.env.ENV === 'production') {
                     await rest.put(Routes.applicationCommand(CLIENT_ID), { body: commands });
-                    console.log('Successfully registered slash commands globally.');
+                    console.log(clr.brightCyan(`[${realDate()}]`) + ' Registered slash commands ' + clr.brightYellow('globally') + '.');
                 } else {
                     await rest.put(Routes.applicationGuildCommands(CLIENT_ID, GUILD_ID), { body: commands });
-                    console.log('Successfully registered slash commands locally.');
+                    console.log(clr.brightCyan(`[${realDate()}]`) + ' Registered slash commands ' + clr.brightYellow('locally') + '.');
                 };
             } catch (err) { // error
                 if (err) console.error(err);

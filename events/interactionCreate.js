@@ -11,11 +11,12 @@ module.exports = {
         if (!command) return;
 
         try {
-            await command.execute(interaction); // create (NEW) command
+            await command.execute(client, interaction); // create (NEW) command
         } catch (err) { // error
             if (err) console.error(err);
+
             await interaction.reply({
-                content: 'There was an error while executing this command!',
+                content: 'Pojawił się błąd podczas uruchamiania komendy!',
                 ephemeral: true
             });
         };

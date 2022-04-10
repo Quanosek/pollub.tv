@@ -1,14 +1,18 @@
+/* IMPORT */
+
 require('dotenv').config();
 const { SlashCommandBuilder } = require('@discordjs/builders');
+
+/* COMMAND */
 
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('prefix')
-        .setDescription('Shows bot prefix'),
+        .setDescription('Pokazuje preifx bota.'),
 
-    async execute(interaction) {
+    async execute(client, interaction) {
         await interaction.reply({
-            content: `My prefix is: \`${process.env.PREFIX}\``,
+            content: `Mój prefix to: \`${process.env.PREFIX}\``,
             ephemeral: true,
         });
     },

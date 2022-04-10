@@ -1,19 +1,23 @@
+/* IMPORT */
+
 const { SlashCommandBuilder } = require('@discordjs/builders');
+
+/* COMMAND */
 
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('echo')
-        .setDescription('Echos your input.')
+        .setDescription('Powtarza podaną wiadomość.')
         .addStringOption((option) =>
             option
-            .setName('message')
-            .setDescription('The message to echo.')
+            .setName('wiadomość')
+            .setDescription('Wiadomość, którą chcesz powtórzyć.')
             .setRequired(true)
         ),
 
-    async execute(interaction) {
+    async execute(client, interaction) {
         await interaction.reply({
-            content: ('(NEW) ' + interaction.options.getString('message')),
+            content: (interaction.options.getString('wiadomość')),
             ephemeral: true,
         });
     },

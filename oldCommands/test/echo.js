@@ -1,15 +1,32 @@
+/* IMPORT & DEFINE */
+
 require('dotenv').config();
-const PREFIX = process.env.PREFIX;
+const COLOR_ERR = process.env.COLOR_ERR;
+const COLOR1 = process.env.COLOR1;
+const COLOR2 = process.env.COLOR2;
+
+const { MessageEmbed } = require('discord.js');
+
+const msgAutoDelete = require('../../functions/msgAutoDelete.js')
+
+/* COMMAND */
 
 module.exports = {
     name: 'echo',
-    description: 'Echos your input.',
-    usage: `${PREFIX}echo <message>`,
+    aliases: [],
+    description: 'Powtarza podaną wiadomość.',
 
-    async execute(message, args) {
+    async execute(client, msg, args) {
+
+        msgAutoDelete(msg);
 
         if (args = []) { args = 'Echo' };
-        console.log(args);
-        return message.reply(`(OLD) ${args}`);
+
+        return msg.reply({
+            embeds: [new MessageEmbed()
+                .setColor(COLOR1)
+                .setDescription(args)
+            ]
+        }).then(msg => msgAutoDelete(msg));
     },
 };

@@ -1,12 +1,12 @@
-/* IMPORT & DEFINE */
+/* IMPORT */
 
 require('dotenv').config();
 const fs = require('fs');
 
+/* MAIN DEFINE */
+
 const { Client, Collection } = require('discord.js');
 const client = new Client({ intents: 32767 });
-
-/* MAIN DEFINE */
 
 client.commands = new Collection();
 

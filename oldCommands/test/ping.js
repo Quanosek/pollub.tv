@@ -1,12 +1,30 @@
+/* IMPORT & DEFINE */
+
 require('dotenv').config();
-const PREFIX = process.env.PREFIX;
+const COLOR_ERR = process.env.COLOR_ERR;
+const COLOR1 = process.env.COLOR1;
+const COLOR2 = process.env.COLOR2;
+
+const { MessageEmbed } = require('discord.js');
+
+const msgAutoDelete = require('../../functions/msgAutoDelete.js')
+
+/* COMMAND */
 
 module.exports = {
     name: 'ping',
-    description: 'Replies with Pong!',
-    usage: `${PREFIX}ping`,
+    aliases: [],
+    description: 'Ping-Pong!',
 
-    async execute(message, args) {
-        await message.reply('(OLD) Pong!');
+    async execute(client, msg, args) {
+
+        msgAutoDelete(msg);
+
+        return msg.reply({
+            embeds: [new MessageEmbed()
+                .setColor(COLOR1)
+                .setDescription('Pong!')
+            ]
+        }).then(msg => msgAutoDelete(msg));
     },
 };
