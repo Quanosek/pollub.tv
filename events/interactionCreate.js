@@ -6,7 +6,7 @@ module.exports = {
     async execute(interaction, client) {
         if (!interaction.isCommand()) return;
 
-        const command = client.commands.get(interaction.commandName);
+        const command = client.commands.get('new' + interaction.commandName); // define new name in Colection
 
         if (!command) return;
 

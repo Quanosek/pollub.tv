@@ -17,9 +17,11 @@ module.exports = {
 
         const commandName = args.shift().toLowerCase();
 
-        if (!client.commands.has(commandName)) return;
+        if (!client.commands.has('old' + commandName)) return;
 
-        const command = client.commands.get(commandName);
+        const command = client.commands.get('old' + commandName); // define new name in Colection
+
+        console.log(command);
 
         try {
             if (command.data) return; // reject interaction commands

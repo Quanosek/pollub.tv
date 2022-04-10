@@ -15,7 +15,7 @@ module.exports = (client) => {
             for (const file of commandFiles) {
                 const command = require(`../oldCommands/${folder}/${file}`);
 
-                client.commands.set(command.name, command);
+                client.commands.set(('old' + command.name), command);
             };
         };
     };
