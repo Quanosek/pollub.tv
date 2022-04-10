@@ -1,6 +1,9 @@
 /* IMPORT & DEFINE */
 
 require('dotenv').config();
+const CLIENT_ID = process.env.CLIENT_ID;
+const GUILD_ID = process.env.GUILD_ID;
+
 const fs = require('fs');
 const clr = require('colors');
 
@@ -8,9 +11,6 @@ const { REST } = require('@discordjs/rest');
 const { Routes } = require('discord-api-types/v10');
 
 const realDate = require('../functions/realDate.js')
-
-const CLIENT_ID = process.env.CLIENT_ID;
-const GUILD_ID = process.env.GUILD_ID;
 
 /* NEW COMMANDS HANDLER */
 

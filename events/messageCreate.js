@@ -4,7 +4,6 @@ require('dotenv').config();
 const PREFIX = process.env.PREFIX;
 const COLOR_ERR = process.env.COLOR_ERR;
 const COLOR1 = process.env.COLOR1;
-const COLOR2 = process.env.COLOR2;
 
 const { MessageEmbed } = require('discord.js');
 
@@ -31,7 +30,7 @@ module.exports = {
             return msg.reply({
                 embeds: [new MessageEmbed()
                     .setColor(COLOR1)
-                    .setTitle(`Mój prefix to : \`${PREFIX}\``)
+                    .setTitle(`⚙️ | Mój prefix to : \`${PREFIX}\``)
                     .setDescription(`Użyj komendy \`${PREFIX}help\` aby uzyskać więcej informacji!`)
                 ]
             }).then(msg => msgAutoDelete(msg));
@@ -65,7 +64,7 @@ module.exports = {
                 return msg.reply({
                     embeds: [new MessageEmbed()
                         .setColor(COLOR_ERR)
-                        .setDescription('Pojawił się błąd podczas uruchamiania komendy!')
+                        .setDescription('🛑 | Pojawił się błąd podczas uruchamiania komendy!')
                     ]
                 }).then(msg => msgAutoDelete(msg));
 
