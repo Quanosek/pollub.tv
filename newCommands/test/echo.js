@@ -1,5 +1,12 @@
 /* IMPORT */
 
+require('dotenv').config();
+const COLOR_ERR = process.env.COLOR_ERR;
+const COLOR1 = process.env.COLOR1;
+const COLOR2 = process.env.COLOR2;
+
+const { MessageEmbed } = require('discord.js');
+
 const { SlashCommandBuilder } = require('@discordjs/builders');
 
 /* COMMAND */
@@ -16,8 +23,11 @@ module.exports = {
         ),
 
     async execute(client, interaction) {
-        await interaction.reply({
-            content: (interaction.options.getString('wiadomość')),
+        return interaction.reply({
+            embeds: [new MessageEmbed()
+                .setColor(COLOR1)
+                .setDescription(interaction.options.getString('wiadomość'))
+            ],
             ephemeral: true,
         });
     },

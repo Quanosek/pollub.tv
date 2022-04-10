@@ -1,3 +1,12 @@
+/* IMPORT & DEFINE */
+
+require('dotenv').config();
+const COLOR_ERR = process.env.COLOR_ERR;
+const COLOR1 = process.env.COLOR1;
+const COLOR2 = process.env.COLOR2;
+
+const { MessageEmbed } = require('discord.js');
+
 /* (NEW) INTERACTION CREATE EVENT */
 
 module.exports = {
@@ -15,9 +24,12 @@ module.exports = {
         } catch (err) { // error
             if (err) console.error(err);
 
-            await interaction.reply({
-                content: 'Pojawił się błąd podczas uruchamiania komendy!',
-                ephemeral: true
+            return interaction.reply({
+                embeds: [new MessageEmbed()
+                    .setColor(COLOR1)
+                    .setDescription('Pojawił się błąd podczas uruchamiania komendy!')
+                ],
+                ephemeral: true,
             });
         };
     },
