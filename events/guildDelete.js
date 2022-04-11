@@ -11,7 +11,7 @@ module.exports = {
 
     async execute(client, guild) {
 
-        // guild left log
+        // left guild log
         console.log(`> ` + clr.brightCyan(`[${realDate()}]`) + ` Guild: ${guild.name}, ${guild.id}\n>> Bot ` + clr.brightRed(`left`) + ` the server!`);
 
     },

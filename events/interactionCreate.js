@@ -5,30 +5,57 @@ const COLOR1 = process.env.COLOR1;
 
 const { MessageEmbed } = require('discord.js');
 
-/* (NEW) INTERACTION CREATE EVENT */
+/* INTERACTION CREATE EVENT */
 
 module.exports = {
     name: 'interactionCreate',
 
     async execute(interaction, client) {
-        if (!interaction.isCommand()) return;
 
-        const command = client.commands.get('new' + interaction.commandName); // define new name in Colection
+        // Slash Commands Handling
 
-        if (!command) return;
+        if (interaction.isCommand()) {
 
-        try {
-            await command.execute(client, interaction); // create (NEW) command
-        } catch (err) { // error
-            if (err) console.error(err);
+            const cmd = client.slashCommands.get(interaction.commandName);
+            if (!cmd) return;
 
-            return interaction.reply({
-                embeds: [new MessageEmbed()
-                    .setColor(COLOR1)
-                    .setDescription('🛑 | Pojawił się błąd podczas uruchamiania komendy!')
-                ],
-                ephemeral: true,
-            });
+            const args = [];
+
+            for (let option of interaction.options.data) {
+
+                if (option.type === "SUB_COMMAND") {
+                    if (option.name) { args.push(option.name) };
+                    option.options.forEach((x) => {
+                        if (x.value) { args.push(x.value) };
+                    });
+                } else if (option.value) { args.push(option.value) };
+            };
+
+            interaction.member = interaction.guild.members.cache.get(interaction.user.id);
+
+            try {
+                await cmd.run(client, interaction, args); // run slash command
+            } catch (err) {
+                if (err) {
+                    console.error(err);
+
+                    return interaction.reply({
+                        embeds: [new MessageEmbed()
+                            .setColor(COLOR1)
+                            .setDescription('🛑 | Pojawił się błąd podczas uruchamiania komendy!')
+                        ],
+                        ephemeral: true,
+                    });
+                };
+            };
+
+        };
+
+        // Context Menu Handling
+
+        if (interaction.isContextMenu()) {
+            const cmd = client.slashCommands.get(interaction.commandName);
+            if (!cmd) return;
         };
     },
 };

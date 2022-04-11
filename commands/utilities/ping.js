@@ -14,7 +14,7 @@ module.exports = {
     aliases: ['p'],
     description: 'Ping-Pong!',
 
-    async execute(client, msg, args) {
+    async run(client, msg, args) {
 
         msgAutoDelete(msg);
 

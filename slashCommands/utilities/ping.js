@@ -1,20 +1,17 @@
-/* IMPORT */
+/* IMPORT & DEFINE */
 
 require('dotenv').config();
 const COLOR1 = process.env.COLOR1;
 
 const { MessageEmbed } = require('discord.js');
 
-const { SlashCommandBuilder } = require('@discordjs/builders');
-
 /* COMMAND */
 
 module.exports = {
-    data: new SlashCommandBuilder()
-        .setName('ping')
-        .setDescription('Ping-Pong!'),
+    name: 'ping',
+    description: 'Ping-Pong!',
 
-    async execute(client, interaction) {
+    async run(client, interaction) {
 
         interaction.reply({
 

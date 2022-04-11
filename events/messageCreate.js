@@ -9,7 +9,7 @@ const { MessageEmbed } = require('discord.js');
 
 const msgAutoDelete = require('../functions/msgAutoDelete.js')
 
-/* (OLD) MESSAGE CREATE EVENT */
+/* MESSAGE CREATE EVENT */
 
 module.exports = {
     name: 'messageCreate',
@@ -37,25 +37,23 @@ module.exports = {
         };
 
         // avoid simple mistakes
-        if (!msg.content.startsWith(PREFIX) ||
+        if (!msg.content.toLowerCase().startsWith(PREFIX) ||
+            !msg.guild ||
             msg.author.bot ||
             msg.channel.type === 'dm'
         ) return;
 
-        const args = msg.content.slice(PREFIX.length).trim().split(/ +/);
-
-        const commandName = args.shift().toLowerCase();
+        const [cmdName, ...args] = msg.content.slice(PREFIX.length).trim().split(/ +/g);
 
         // find command or aliases
-        const command = client.commands.get('old' + commandName) ||
-            client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName));
+        const cmd = client.commands.get(cmdName.toLowerCase()) ||
+            client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(cmdName.toLowerCase()));
 
-        if (!command) return;
+        if (!cmd) return;
 
         try {
-            if (command.data) return; // reject interaction commands
-            await command.execute(client, msg, args); // create (OLD) command
-        } catch (err) { // error
+            await cmd.run(client, msg, args); // run command
+        } catch (err) {
             if (err) {
                 console.error(err);
 
@@ -67,8 +65,8 @@ module.exports = {
                         .setDescription('🛑 | Pojawił się błąd podczas uruchamiania komendy!')
                     ]
                 }).then(msg => msgAutoDelete(msg));
-
             };
         };
+
     },
 };

@@ -1,12 +1,6 @@
-/* IMPORT & DEFINE */
+/* IMPORT */
 
-require('dotenv').config();
 const clr = require('colors');
-const AUTHOR_NAME = process.env.AUTHOR_NAME;
-const ICON = process.env.ICON;
-const COLOR1 = process.env.COLOR1;
-
-const { MessageEmbed } = require('discord.js');
 
 const realDate = require('../functions/realDate.js')
 

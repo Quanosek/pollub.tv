@@ -1,14 +1,18 @@
 /* IMPORT */
 
 require('dotenv').config();
+const TOKEN = process.env.TOKEN
+
 const fs = require('fs');
 
 /* MAIN DEFINE */
 
 const { Client, Collection } = require('discord.js');
-const client = new Client({ intents: 32767 });
+const client = new Client({ intents: 32767 }); // define client
 
+// commands collections
 client.commands = new Collection();
+client.slashCommands = new Collection();
 
 const handlers = fs
     .readdirSync('./handlers')
@@ -18,8 +22,8 @@ const eventFiles = fs
     .readdirSync('./events')
     .filter(file => file.endsWith('.js'));
 
-const newCommandFolders = fs.readdirSync('./newCommands');
-const oldCommandFolders = fs.readdirSync('./oldCommands');
+const slashCommandsFolders = fs.readdirSync('./slashCommands');
+const commandsFolders = fs.readdirSync('./commands');
 
 /* MAIN FUNCTION */
 
@@ -29,11 +33,12 @@ const oldCommandFolders = fs.readdirSync('./oldCommands');
         require(`./handlers/${file}`)(client);
     };
 
-    /* all handlers */
+    // handlers run
 
     client.handleEvents(eventFiles, './events');
-    client.handleNewCommands(newCommandFolders, './newCommands');
-    client.handleOldCommands(oldCommandFolders, './oldCommands');
+    client.handleSlashCommands(slashCommandsFolders, './slashCommands');
+    client.handleCommands(commandsFolders, './commands');
 
-    client.login(process.env.TOKEN); // token
 })();
+
+client.login(TOKEN); // token

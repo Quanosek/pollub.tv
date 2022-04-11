@@ -11,8 +11,12 @@ module.exports = {
     once: true, // only once
 
     async execute(client) {
-        console.log(clr.brightCyan(`[${realDate()}]`) + ' Bot is ready!'); // ready message
 
-        client.user.setActivity('/help', { type: 'PLAYING' }); // bot activity
+        // on ready message
+        console.log(clr.brightCyan(`[${realDate()}]`) + ` Bot ${process.env.NAME} is ready!`);
+
+        // bot activity
+        client.user.setActivity('/help', { type: 'PLAYING' });
+
     },
 };

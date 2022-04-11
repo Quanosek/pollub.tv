@@ -9,7 +9,7 @@ function msgAutoDelete(msg, delay) {
 
     if (!msg) console.log(`> ` + clr.brightCyan(`[${realDate()}]`) + ` Guild: ${msg.guild.name}, ${msg.guild.id}\n>> On msgAutoDelete: ` + clr.Red(`'msg' is not declared`) + `!`);
 
-    if (!delay) delay = 10
+    if (!delay) delay = 10 // delay of deleting
 
     delay += '000' // seconds to miliseconds
 

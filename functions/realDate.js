@@ -14,6 +14,7 @@ function realDate() {
         timeZone: 'Europe/Brussels',
     };
 
+    // special formatted date
     return new Intl.DateTimeFormat('pl-PL', options).format(date);
 
 };

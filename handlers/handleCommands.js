@@ -2,21 +2,24 @@
 
 const fs = require('fs');
 
-/* OLD COMMANDS HANDLER */
+/* COMMANDS HANDLER */
 
 module.exports = (client) => {
-    client.handleOldCommands = async(commandFolders, path) => {
+    client.handleCommands = async(commandFolders, path) => {
 
         for (folder of commandFolders) {
+
             const commandFiles = fs
                 .readdirSync(`${path}/${folder}`)
                 .filter(file => file.endsWith('.js'));
 
             for (const file of commandFiles) {
-                const command = require(`../oldCommands/${folder}/${file}`);
+                const cmd = require(`../commands/${folder}/${file}`);
 
-                client.commands.set(('old' + command.name), command);
+                client.commands.set((cmd.name), cmd);
             };
+
         };
+
     };
 };

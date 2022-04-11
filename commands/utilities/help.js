@@ -18,7 +18,7 @@ module.exports = {
     aliases: ['h'],
     description: 'Pomoc wszelaka!',
 
-    async execute(client, msg, args) {
+    async run(client, msg, args) {
 
         msgAutoDelete(msg, 60);
 
