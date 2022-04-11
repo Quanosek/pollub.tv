@@ -11,7 +11,7 @@ const msgAutoDelete = require('../../functions/msgAutoDelete.js')
 
 module.exports = {
     name: 'ping',
-    aliases: [],
+    aliases: ['p'],
     description: 'Ping-Pong!',
 
     async execute(client, msg, args) {

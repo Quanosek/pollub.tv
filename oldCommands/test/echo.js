@@ -23,7 +23,7 @@ module.exports = {
         return msg.reply({
             embeds: [new MessageEmbed()
                 .setColor(COLOR1)
-                .setDescription('⚙️ | ' + args)
+                .setDescription('🗣️ | ' + args)
             ]
         }).then(msg => msgAutoDelete(msg));
     },

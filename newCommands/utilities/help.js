@@ -1,4 +1,4 @@
-/* IMPORT */
+/* IMPORT & DEFINE */
 
 require('dotenv').config();
 const NAME = process.env.NAME;
@@ -23,14 +23,12 @@ module.exports = {
             embeds: [new MessageEmbed()
                 .setColor(COLOR1)
                 .setThumbnail(ICON)
-                .setTitle(`Hej, jestem ${NAME}!`)
+                .setTitle(`👋 | **Hej, jestem ${NAME}!**`)
                 .setDescription(`
 Dedykowany bot techniczny dla serwera Telewizji Politechniki Lubelskiej.
-
+                
 **Więcej informacji już niedługo...**
-
-*Wszystkie komendy obsługują również skróty np. zamiast pisać \`${PREFIX}ping\`, równie dobrze możesz wpisać: \`${PREFIX}p\` itp...*
-        `)
+                `)
                 .setFooter({ text: `Bot stworzony przez: ${AUTHOR_NAME}` })
                 .setTimestamp()
             ]

@@ -24,7 +24,7 @@ module.exports = {
         return interaction.reply({
             embeds: [new MessageEmbed()
                 .setColor(COLOR1)
-                .setDescription('⚙️ | ' + interaction.options.getString('wiadomość'))
+                .setDescription('🗣️ | ' + interaction.options.getString('wiadomość'))
             ],
             ephemeral: true,
         });

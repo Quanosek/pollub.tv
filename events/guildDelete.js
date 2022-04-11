@@ -14,6 +14,5 @@ module.exports = {
         // guild left log
         console.log(`> ` + clr.brightCyan(`[${realDate()}]`) + ` Guild: ${guild.name}, ${guild.id}\n>> Bot ` + clr.brightRed(`left`) + ` the server!`);
 
-
-    }
+    },
 };

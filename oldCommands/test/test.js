@@ -11,7 +11,7 @@ const msgAutoDelete = require('../../functions/msgAutoDelete.js')
 
 module.exports = {
     name: 'test',
-    aliases: [],
+    aliases: ['t1'],
     description: 'test',
 
     async execute(client, msg, args) {
