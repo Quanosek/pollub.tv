@@ -16,6 +16,8 @@ module.exports = {
         ),
 
     async execute(client, interaction) {
-        return console.log('delete');
+
+        const amount = interaction.options.getString('liczba');
+        return console.log(`delete ${amount}`);
     },
 };

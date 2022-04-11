@@ -26,7 +26,7 @@ module.exports = {
             embeds: [new MessageEmbed()
                 .setColor(COLOR1)
                 .setThumbnail(ICON)
-                .setTitle(`👋 | **Hej, jestem ${NAME}!**`)
+                .setTitle(`👋 | **Hej, jestem botem ${NAME}!**`)
                 .setDescription(`
 Dedykowany bot techniczny dla serwera Telewizji Politechniki Lubelskiej.
 

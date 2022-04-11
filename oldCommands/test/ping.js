@@ -23,6 +23,19 @@ module.exports = {
                 .setColor(COLOR1)
                 .setDescription('🏓 | Pong!')
             ]
+        }).then(resultmsg => {
+
+            return resultmsg.edit({
+                embeds: [new MessageEmbed()
+                    .setColor(COLOR1)
+                    .setTitle('🏓 | Pong!')
+                    .setDescription(`
+    Opóźnienie bota: \`${resultmsg.createdTimestamp - msg.createdTimestamp} ms\`
+    Opóźnienie API: \`${client.ws.ping} ms\`
+                    `),
+                ],
+            });
+
         }).then(msg => msgAutoDelete(msg));
     },
 };
