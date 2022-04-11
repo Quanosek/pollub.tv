@@ -21,12 +21,16 @@ module.exports = {
         ),
 
     async execute(client, interaction) {
+
         return interaction.reply({
+
             embeds: [new MessageEmbed()
                 .setColor(COLOR1)
                 .setDescription('🗣️ | ' + interaction.options.getString('wiadomość'))
             ],
             ephemeral: true,
+
         });
+
     },
 };

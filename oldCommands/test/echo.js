@@ -18,7 +18,7 @@ module.exports = {
 
         msgAutoDelete(msg);
 
-        if (args = []) { args = 'Echo' };
+        if (!args[0]) { args = 'Echo' };
 
         return msg.reply({
             embeds: [new MessageEmbed()

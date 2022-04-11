@@ -16,12 +16,16 @@ module.exports = {
         .setDescription('Pokazuje preifx bota.'),
 
     async execute(client, interaction) {
+
         return interaction.reply({
+
             embeds: [new MessageEmbed()
                 .setColor(COLOR1)
                 .setDescription(`⚙️ | Mój prefix to: \`${PREFIX}\``)
             ],
             ephemeral: true,
+
         });
+
     },
 };

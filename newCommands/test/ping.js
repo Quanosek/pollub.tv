@@ -6,7 +6,6 @@ const COLOR1 = process.env.COLOR1;
 const { MessageEmbed } = require('discord.js');
 
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const msgAutoDelete = require('../../functions/msgAutoDelete.js')
 
 /* COMMAND */
 
