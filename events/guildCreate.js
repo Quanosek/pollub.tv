@@ -9,10 +9,10 @@ const realDate = require('../functions/realDate.js')
 module.exports = {
     name: 'guildCreate',
 
-    async execute(client, guild) {
+    async run(client, guild) {
 
         // join guild log
-        console.log(`> ` + clr.brightCyan(`[${realDate()}]`) + ` Guild: ${guild.name}, ${guild.id}\n>> Bot ` + clr.brightGreen(`joined`) + ` to the server!`);
+        console.log(realDate() + ` Guild: ${guild.name}, ${guild.id}\n >>> Bot ` + clr.brightGreen(`joined`) + ` to the server!`);
 
     },
 };

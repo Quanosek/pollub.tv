@@ -14,7 +14,7 @@ const msgAutoDelete = require('../functions/msgAutoDelete.js')
 module.exports = {
     name: 'messageCreate',
 
-    async execute(msg, client) {
+    async run(client, msg) {
 
         // check permissions to send messages
         if (!msg.channel.permissionsFor(msg.guild.me).has('SEND_MESSAGES')) return;

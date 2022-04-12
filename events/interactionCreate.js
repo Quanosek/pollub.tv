@@ -10,7 +10,7 @@ const { MessageEmbed } = require('discord.js');
 module.exports = {
     name: 'interactionCreate',
 
-    async execute(interaction, client) {
+    async run(client, interaction) {
 
         // Slash Commands Handling
 

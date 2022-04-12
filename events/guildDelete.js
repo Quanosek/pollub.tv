@@ -9,10 +9,10 @@ const realDate = require('../functions/realDate.js')
 module.exports = {
     name: 'guildDelete',
 
-    async execute(client, guild) {
+    async run(client, guild) {
 
         // left guild log
-        console.log(`> ` + clr.brightCyan(`[${realDate()}]`) + ` Guild: ${guild.name}, ${guild.id}\n>> Bot ` + clr.brightRed(`left`) + ` the server!`);
+        console.log(realDate() + ` Guild: ${guild.name}, ${guild.id}\n >>> Bot ` + clr.brightRed(`left`) + ` the server!`);
 
     },
 };

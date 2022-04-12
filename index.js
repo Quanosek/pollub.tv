@@ -38,7 +38,6 @@ const commandsFolders = fs.readdirSync('./commands');
     client.handleEvents(eventFiles, './events');
     client.handleSlashCommands(slashCommandsFolders, './slashCommands');
     client.handleCommands(commandsFolders, './commands');
-
 })();
 
 client.login(TOKEN); // token

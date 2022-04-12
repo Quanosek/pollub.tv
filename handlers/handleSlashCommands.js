@@ -59,14 +59,14 @@ module.exports = (client) => {
             /* register slash commands */
 
             try {
-                console.log(clr.brightCyan(`[${realDate()}]`) + ' Started refreshing slash commands...');
+                console.log(realDate() + ' Started refreshing slash commands...');
 
                 if (process.env.ENV === 'production') { // globaly
                     await client.application.commands.set(slashCommandsArray);
-                    console.log(clr.brightCyan(`[${realDate()}]`) + ' Registered slash commands ' + clr.brightYellow('globally') + '.');
+                    console.log(realDate() + ' Registered slash commands ' + clr.underline('globally') + '.');
                 } else { // locally
                     await client.guilds.cache.get(GUILD_ID).commands.set(slashCommandsArray);
-                    console.log(clr.brightCyan(`[${realDate()}]`) + ' Registered slash commands ' + clr.brightYellow('locally') + '.');
+                    console.log(realDate() + ' Registered slash commands ' + clr.underline('locally') + '.');
                 };
             } catch (err) {
                 if (err) console.error(err);
