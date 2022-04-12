@@ -30,8 +30,13 @@ module.exports = {
             return msg.reply({
                 embeds: [new MessageEmbed()
                     .setColor(COLOR1)
-                    .setTitle(`⚙️ | Mój prefix to : \`${PREFIX}\``)
-                    .setDescription(`Użyj komendy \`${PREFIX}help\` aby uzyskać więcej informacji!`)
+                    .setTitle(`😄 | Hej, to ja!`)
+                    .setDescription(`
+Jestem dedykowanym botem dla serwera dla osób zaangażowanych w rozwój Telewizji Politechniki Lubelskiej.
+
+Mój prefix to \`${PREFIX}\`
+Użyj komendy \`help\` po więcej inforamcji!
+                    `)
                 ]
             }).then(msg => msgAutoDelete(msg));
         };

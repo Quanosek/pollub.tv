@@ -4,8 +4,8 @@ require('dotenv').config();
 const NAME = process.env.NAME;
 const PREFIX = process.env.PREFIX;
 const ICON = process.env.ICON;
-const COLOR1 = process.env.COLOR2;
-const AUTHOR_NAME = process.env.AUTHOR_NAME;
+const AUTHOR = process.env.AUTHOR_NAME;
+const COLOR2 = process.env.COLOR2;
 
 const { MessageEmbed } = require('discord.js');
 
@@ -24,7 +24,7 @@ module.exports = {
 
         return msg.reply({
             embeds: [new MessageEmbed()
-                .setColor(COLOR1)
+                .setColor(COLOR2)
                 .setThumbnail(ICON)
                 .setTitle(`👋 | **Hej, jestem botem ${NAME}!**`)
                 .setDescription(`
@@ -34,7 +34,7 @@ Dedykowany bot techniczny dla serwera Telewizji Politechniki Lubelskiej.
 
 *Wszystkie komendy obsługują skróty np. zamiast pisać \`${PREFIX}ping\`, równie dobrze możesz wpisać: \`${PREFIX}p\` itp...*
         `)
-                .setFooter({ text: `Bot stworzony przez: ${AUTHOR_NAME}` })
+                .setFooter({ text: `Autor: ${AUTHOR}` })
                 .setTimestamp()
             ]
         }).then(msg => msgAutoDelete(msg, 60));

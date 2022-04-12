@@ -5,8 +5,6 @@ const COLOR1 = process.env.COLOR1;
 
 const { MessageEmbed } = require('discord.js');
 
-const msgAutoDelete = require('../../functions/msgAutoDelete.js')
-
 /* COMMAND */
 
 module.exports = {
@@ -38,7 +36,7 @@ module.exports = {
             return interaction.reply({
                 embeds: [new MessageEmbed()
                     .setColor(COLOR1)
-                    .setDescription('Podaj poprawną wartość między \`1-100\`.'),
+                    .setDescription('🛑 | Podaj poprawną wartość między \`1-100\`.'),
                 ],
                 ephemeral: true,
             });
@@ -64,7 +62,7 @@ module.exports = {
                 return interaction.reply({
                     embeds: [new MessageEmbed()
                         .setColor(COLOR1)
-                        .setDescription('Nie znaleziono żadnej wiadomości.'),
+                        .setDescription('🛑 | Nie znaleziono żadnej wiadomości.'),
                     ],
                     ephemeral: true,
                 });
@@ -76,7 +74,7 @@ module.exports = {
             return interaction.reply({
                 embeds: [new MessageEmbed()
                     .setColor(COLOR1)
-                    .setDescription(`Usunięto \`${size}\` ${translate} ${target}.`),
+                    .setDescription(`🗑️ | Usunięto \`${size}\` ${translate} ${target}.`),
                 ],
             });
 
@@ -88,7 +86,7 @@ module.exports = {
                 return interaction.reply({
                     embeds: [new MessageEmbed()
                         .setColor(COLOR1)
-                        .setDescription('Nie znaleziono żadnej wiadomości.'),
+                        .setDescription('🛑 | Nie znaleziono żadnej wiadomości.'),
                     ],
                     ephemeral: true,
                 });
@@ -100,7 +98,7 @@ module.exports = {
             return interaction.reply({
                 embeds: [new MessageEmbed()
                     .setColor(COLOR1)
-                    .setDescription(`Usunięto \`${size}\` ${translate}.`),
+                    .setDescription(`🗑️ | Usunięto \`${size}\` ${translate}.`),
                 ],
             });
 

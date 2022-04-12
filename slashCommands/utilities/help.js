@@ -3,8 +3,8 @@
 require('dotenv').config();
 const NAME = process.env.NAME;
 const ICON = process.env.ICON;
-const COLOR1 = process.env.COLOR2;
-const AUTHOR_NAME = process.env.AUTHOR_NAME;
+const AUTHOR = process.env.AUTHOR_NAME;
+const COLOR2 = process.env.COLOR2;
 
 const { MessageEmbed } = require('discord.js');
 
@@ -19,7 +19,7 @@ module.exports = {
         return interaction.reply({
 
             embeds: [new MessageEmbed()
-                .setColor(COLOR1)
+                .setColor(COLOR2)
                 .setThumbnail(ICON)
                 .setTitle(`👋 | **Hej, jestem ${NAME}!**`)
                 .setDescription(`
@@ -27,7 +27,7 @@ Dedykowany bot techniczny dla serwera Telewizji Politechniki Lubelskiej.
 
 **Więcej informacji już niedługo...**
                 `)
-                .setFooter({ text: `Bot stworzony przez: ${AUTHOR_NAME}` })
+                .setFooter({ text: `Autor: ${AUTHOR}` })
                 .setTimestamp()
             ],
 
