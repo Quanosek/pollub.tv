@@ -39,16 +39,23 @@ module.exports = (client) => {
             /* register slash commands */
 
             try {
-                console.log(realDate() + ' Started refreshing slash commands...');
+                console.log(realDate() + ' Started refreshing slash commands.');
 
                 if (REGISTER === 'globally') { // globaly
 
+                    // await guild.commands.set([]);
+                    // console.log(realDate() + ' Deleted all local slash commands.');
+
                     await client.application.commands.set(slashCommandsArray);
-                    console.log(realDate() + ' Registered slash commands ' + clr.underline('globally') + '.');
+                    console.log(realDate() + ' Registered all slash commands ' + clr.underline('globally') + '.');
 
                 } else if (REGISTER === 'locally') { // locally
 
+                    // await client.application.commands.set([]);
+                    // console.log(realDate() + ' Deleted all global slash commands.');
+
                     const guild = client.guilds.cache.get(GUILD_ID);
+
                     await guild.commands.set(slashCommandsArray).then((cmd) => {
 
                         /* permissions check */
@@ -74,7 +81,7 @@ module.exports = (client) => {
                         guild.commands.permissions.set({ fullPermissions });
                     });
 
-                    console.log(realDate() + ' Registered slash commands ' + clr.underline('locally') + '.');
+                    console.log(realDate() + ' Registered all slash commands ' + clr.underline('locally') + '.');
 
                 } else {
                     console.log(' >>> Wrong process.env.ENV value!');

@@ -20,7 +20,7 @@ module.exports = {
 
     async run(client, msg, args) {
 
-        msgAutoDelete(msg, 60);
+        msgAutoDelete(msg);
 
         return msg.reply({
             embeds: [new MessageEmbed()
@@ -34,10 +34,10 @@ Dedykowany bot techniczny dla serwera Telewizji Politechniki Lubelskiej.
 
 *Wszystkie komendy obsługują skróty np. zamiast pisać \`${PREFIX}ping\`, równie dobrze możesz wpisać: \`${PREFIX}p\` itp...*
         `)
-                .setFooter({ text: `Autor: ${AUTHOR}` })
+                .setFooter({ text: `Autor bota: ${AUTHOR}` })
                 .setTimestamp()
             ]
-        }).then(msg => msgAutoDelete(msg, 60));
+        }).then(msg => msgAutoDelete(msg));
 
     }
 };

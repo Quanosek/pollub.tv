@@ -37,6 +37,8 @@ Jestem dedykowanym botem dla serwera dla osób zaangażowanych w rozwój Telewiz
 Mój prefix to \`${PREFIX}\`
 Użyj komendy \`help\` po więcej inforamcji!
                     `)
+                    .setFooter({ text: `Autor bota: ${AUTHOR}` })
+                    .setTimestamp()
                 ]
             }).then(msg => msgAutoDelete(msg));
         };

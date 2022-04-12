@@ -19,6 +19,8 @@ module.exports = {
             embeds: [new MessageEmbed()
                 .setColor(COLOR1)
                 .setDescription(`⚙️ | Mój prefix to: \`${PREFIX}\``)
+                .setFooter({ text: `Autor bota: ${AUTHOR}` })
+                .setTimestamp()
             ],
             ephemeral: true,
 
