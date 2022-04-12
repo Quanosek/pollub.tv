@@ -56,6 +56,20 @@ Użyj komendy \`help\` po więcej inforamcji!
 
         if (!cmd) return;
 
+        //msg.member = msg.guild.members.cache.get(msg.user.id);
+
+        if (!msg.member.permissions.has(cmd.userPermissions || [])) {
+
+            msgAutoDelete(msg)
+
+            return msg.reply({
+                embeds: [new MessageEmbed()
+                    .setColor(COLOR_ERR)
+                    .setDescription('🛑 | Nie masz uprawnień do użycia tej komendy!')
+                ],
+            }).then(msg => msgAutoDelete(msg));
+        };
+
         try {
             await cmd.run(client, msg, args); // run command
         } catch (err) {

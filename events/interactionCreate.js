@@ -25,7 +25,7 @@ module.exports = {
                 return interaction.reply({
                     embeds: [new MessageEmbed()
                         .setColor(COLOR_ERR)
-                        .setDescription('🛑 | Nie masz uprawnień do tej komendy!')
+                        .setDescription('🛑 | Nie masz uprawnień do użycia tej komendy!')
                     ],
                     ephemeral: true,
                 });
