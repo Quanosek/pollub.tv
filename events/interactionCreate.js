@@ -1,7 +1,7 @@
 /* IMPORT & DEFINE */
 
 require('dotenv').config();
-const COLOR1 = process.env.COLOR1;
+const COLOR_ERR = process.env.COLOR_ERR;
 
 const { MessageEmbed } = require('discord.js');
 
@@ -21,6 +21,16 @@ module.exports = {
 
             interaction.member = interaction.guild.members.cache.get(interaction.user.id);
 
+            if (!interaction.member.permissions.has(cmd.userPermissions || [])) {
+                return interaction.reply({
+                    embeds: [new MessageEmbed()
+                        .setColor(COLOR_ERR)
+                        .setDescription('🛑 | Nie masz uprawnień do tej komendy!')
+                    ],
+                    ephemeral: true,
+                });
+            };
+
             try {
                 await cmd.run(client, interaction); // run slash command
             } catch (err) {
@@ -29,7 +39,7 @@ module.exports = {
 
                     return interaction.reply({
                         embeds: [new MessageEmbed()
-                            .setColor(COLOR1)
+                            .setColor(COLOR_ERR)
                             .setDescription('🛑 | Pojawił się błąd podczas uruchamiania komendy!')
                         ],
                         ephemeral: true,

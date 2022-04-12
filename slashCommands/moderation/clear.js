@@ -1,6 +1,7 @@
 /* IMPORT */
 
 require('dotenv').config();
+const COLOR_ERR = process.env.COLOR_ERR;
 const COLOR1 = process.env.COLOR1;
 
 const { MessageEmbed } = require('discord.js');
@@ -8,9 +9,9 @@ const { MessageEmbed } = require('discord.js');
 /* COMMAND */
 
 module.exports = {
-    name: 'delete',
+    name: 'clear',
     description: 'Usuwa określoną liczbę wiadomości z kanału.',
-    permission: 'MANAGE_MESSAGES',
+    userPermissions: 'MANAGE_MESSAGES',
     options: [{
             name: 'amout',
             description: 'Określ, ile wiadomości ma zostać usuniętych.',
@@ -35,7 +36,7 @@ module.exports = {
         if (amount < 1 || amount > 100) {
             return interaction.reply({
                 embeds: [new MessageEmbed()
-                    .setColor(COLOR1)
+                    .setColor(COLOR_ERR)
                     .setDescription('🛑 | Podaj poprawną wartość między \`1-100\`.'),
                 ],
                 ephemeral: true,
@@ -61,7 +62,7 @@ module.exports = {
             if (size === 0) {
                 return interaction.reply({
                     embeds: [new MessageEmbed()
-                        .setColor(COLOR1)
+                        .setColor(COLOR_ERR)
                         .setDescription('🛑 | Nie znaleziono żadnej wiadomości.'),
                     ],
                     ephemeral: true,
@@ -85,7 +86,7 @@ module.exports = {
             if (size === 0) {
                 return interaction.reply({
                     embeds: [new MessageEmbed()
-                        .setColor(COLOR1)
+                        .setColor(COLOR_ERR)
                         .setDescription('🛑 | Nie znaleziono żadnej wiadomości.'),
                     ],
                     ephemeral: true,
@@ -104,16 +105,5 @@ module.exports = {
 
         };
 
-        /*
-
-        if (!interaction.member.permissions.has('MANAGE_MESSAGES')) {
-            return interaction.reply({ content: 'Nie masz uprawnień, aby użyć tej komendy.', ephemeral: true });
-        };
-
-        if (!interaction.guild.me.permissions.has('MANAGE_MESSAGES')) {
-            return interaction.reply({ content: 'Nie mam uprawnień, aby to zrobić.', ephemeral: true });
-        };
-
-        */
     },
 };

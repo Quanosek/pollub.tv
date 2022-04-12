@@ -1,10 +1,10 @@
 /* COMMAND */
 
 module.exports = {
-    name: 'delete',
-    aliases: ['del', 'clear', 'c'],
+    name: 'clear',
+    aliases: ['c', 'delete', 'del'],
     description: 'Usuwa określoną liczbę wiadomości z kanału.',
-    userPermission: ["MANAGE_MESSAGES"],
+    userPermissions: 'MANAGE_MESSAGES',
 
     async run(client, msg, args) {
         return console.log('delete');
