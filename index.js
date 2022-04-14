@@ -1,4 +1,4 @@
-/* IMPORT 123*/
+/* IMPORT */
 
 require('dotenv').config();
 const TOKEN = process.env.TOKEN
