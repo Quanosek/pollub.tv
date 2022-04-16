@@ -16,7 +16,7 @@ module.exports = {
         console.log(realDate() + ' Bot ' + clr.underline(process.env.NAME) + ' is ready!');
 
         // bot activity
-        client.user.setActivity('/help', { type: 'PLAYING' });
+        client.user.setActivity('najlepsze wykłady', { type: 'LISTENING' });
 
     },
 };
