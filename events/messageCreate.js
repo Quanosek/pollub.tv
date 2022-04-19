@@ -64,7 +64,7 @@ Użyj komendy \`help\` po więcej inforamcji!
 
             autoDelete(msg)
 
-            return msg.reply({
+            return msg.channel.send({
                 embeds: [new MessageEmbed()
                     .setColor(COLOR_ERR)
                     .setDescription('🛑 | Nie masz uprawnień do użycia tej komendy!')
@@ -80,7 +80,7 @@ Użyj komendy \`help\` po więcej inforamcji!
 
                 autoDelete(msg);
 
-                return msg.reply({
+                return msg.channel.send({
                     embeds: [new MessageEmbed()
                         .setColor(COLOR_ERR)
                         .setDescription('🛑 | Pojawił się błąd podczas uruchamiania komendy!')

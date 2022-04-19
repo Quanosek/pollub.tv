@@ -21,9 +21,7 @@ function autoDelete(msg, delay) {
             }
         }), delay)
 
-    };
-
-    if (msg.type === 'DEFAULT') { // if (old) commands
+    } else {
 
         setTimeout(() => msg.delete().catch(err => {
             if (err.code !== 10008) {

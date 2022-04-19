@@ -35,8 +35,6 @@ module.exports = {
         const amount = options.getNumber('amout');
         const target = options.getMember('target');
 
-        const messages = await channel.messages.fetch();
-
         if (amount < 1 || amount > 100) {
             return interaction.reply({
                 embeds: [new MessageEmbed()
@@ -48,6 +46,8 @@ module.exports = {
         };
 
         if (target) {
+
+            const messages = await channel.messages.fetch();
 
             let i = 0;
             const filtered = [];
@@ -64,7 +64,7 @@ module.exports = {
                     return interaction.reply({
                         embeds: [new MessageEmbed()
                             .setColor(COLOR_ERR)
-                            .setDescription(`🛑 | Nie znaleziono żadnej wiadomości.`),
+                            .setDescription(`🛑 | Nie znaleziono żadnej wiadomości do usunięcia.`),
                         ],
                         ephemeral: true,
                     });
@@ -78,7 +78,7 @@ module.exports = {
                         .setColor(COLOR1)
                         .setDescription(`🗑️ | Usunięto \`${m.size}\` ${translate} ${target}.`),
                     ],
-                }).then(autoDelete(interaction, 5));
+                }).then(autoDelete(interaction, 10));
             });
 
         } else {
@@ -89,7 +89,7 @@ module.exports = {
                     return interaction.reply({
                         embeds: [new MessageEmbed()
                             .setColor(COLOR_ERR)
-                            .setDescription(`🛑 | Nie znaleziono żadnej wiadomości.`),
+                            .setDescription(`🛑 | Nie znaleziono żadnej wiadomości do usunięcia.`),
                         ],
                         ephemeral: true,
                     });
@@ -103,7 +103,7 @@ module.exports = {
                         .setColor(COLOR1)
                         .setDescription(`🗑️ | Usunięto \`${m.size}\` ${translate}.`),
                     ],
-                }).then(autoDelete(interaction, 5));
+                }).then(autoDelete(interaction, 10));
             });
 
         };

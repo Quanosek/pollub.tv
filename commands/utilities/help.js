@@ -20,7 +20,7 @@ module.exports = {
 
     async run(client, msg, args) {
 
-        autoDelete(msg);
+        autoDelete(msg, 20);
 
         return msg.reply({
             embeds: [new MessageEmbed()
