@@ -1,6 +1,6 @@
 /* IMPORT */
 
-const clr = require('colors');
+require('colors');
 
 const realDate = require('../functions/realDate.js')
 
@@ -13,7 +13,7 @@ module.exports = {
     async run(client) {
 
         // on ready message
-        console.log(realDate() + ' Bot ' + clr.underline(process.env.NAME) + ' is ready!');
+        console.log(realDate() + ' Bot ' + process.env.NAME.underline + ' is ready!');
 
         // bot activity
         client.user.setActivity('najlepsze wykłady', { type: 'LISTENING' });

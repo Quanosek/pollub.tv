@@ -1,6 +1,6 @@
 /* IMPORT */
 
-const clr = require('colors');
+require('colors');
 
 /* FUNCTION */
 
@@ -21,7 +21,7 @@ function realDate() {
     // special formatted date
     const newDate = new Intl.DateTimeFormat('pl-PL', options).format(date);
 
-    return clr.brightCyan(`[${newDate}]`)
+    return `[${newDate}]`.brightCyan
 
 };
 

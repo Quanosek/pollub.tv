@@ -1,10 +1,7 @@
-/* IMPORT & DEFINE */
+/* IMPORT */
 
 require('dotenv').config();
-const NAME = process.env.NAME;
-const ICON = process.env.ICON;
-const AUTHOR = process.env.AUTHOR;
-const COLOR2 = process.env.COLOR2;
+const { NAME, ICON, AUTHOR, COLOR2 } = process.env;
 
 const { MessageEmbed } = require('discord.js');
 

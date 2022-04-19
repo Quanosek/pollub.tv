@@ -1,13 +1,14 @@
 /* IMPORT */
 
-const clr = require('colors');
+require('colors');
+
 const realDate = require('./realDate.js')
 
 /* FUNCTION */
 
 function autoDelete(msg, delay) {
 
-    if (!msg) console.log(realDate() + ` Guild: ${msg.guild.name}, ${msg.guild.id}\n >>> On msgAutoDelete: ` + clr.red('Message is not declared.'));
+    if (!msg) console.log(realDate() + ` Guild: ${msg.guild.name}, ${msg.guild.id}\n >>> On msgAutoDelete: ` + 'Message is not declared.'.red);
 
     if (!delay) delay = 10 // delay of deleting
 
@@ -17,7 +18,7 @@ function autoDelete(msg, delay) {
 
         setTimeout(() => msg.deleteReply().catch(err => {
             if (err.code !== 10008) {
-                console.error(realDate() + ` Guild: ${msg.guild.name}, ${msg.guild.id}\n >>> On msgAutoDelete: ` + clr.red(`Failed to delete the message (code: ${err.code}).`));
+                console.error(realDate() + ` Guild: ${msg.guild.name}, ${msg.guild.id}\n >>> On msgAutoDelete: ` + `Failed to delete the message (code: ${err.code}).`.red);
             }
         }), delay)
 
@@ -25,7 +26,7 @@ function autoDelete(msg, delay) {
 
         setTimeout(() => msg.delete().catch(err => {
             if (err.code !== 10008) {
-                console.error(realDate() + ` Guild: ${msg.guild.name}, ${msg.guild.id}\n >>> On msgAutoDelete: ` + clr.red(`Failed to delete the message (code: ${err.code}).`));
+                console.error(realDate() + ` Guild: ${msg.guild.name}, ${msg.guild.id}\n >>> On msgAutoDelete: ` + `Failed to delete the message (code: ${err.code}).`.red);
             }
         }), delay)
 

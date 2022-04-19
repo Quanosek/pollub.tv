@@ -1,6 +1,6 @@
 /* IMPORT */
 
-const clr = require('colors');
+require('colors');
 
 const realDate = require('../functions/realDate.js')
 
@@ -12,7 +12,7 @@ module.exports = {
     async run(client, guild) {
 
         // join guild log
-        console.log(realDate() + ` Guild: ${guild.name}, ${guild.id}\n >>> Bot ` + clr.brightGreen(`joined`) + ` to the server!`);
+        console.log(realDate() + ` Guild: ${guild.name}, ${guild.id}\n >>> Bot ` + `joined`.brightGreen + ` to the server!`);
 
     },
 };

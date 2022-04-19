@@ -1,11 +1,10 @@
-/* IMPORT & DEFINE */
+/* IMPORT */
 
 require('dotenv').config();
-const REGISTER = process.env.REGISTER;
-const GUILD_ID = process.env.GUILD_ID;
+const { REGISTER, GUILD_ID } = process.env;
 
+require('colors');
 const fs = require('fs');
-const clr = require('colors');
 
 const realDate = require('../functions/realDate.js')
 
@@ -47,7 +46,7 @@ module.exports = (client) => {
                     // console.log(realDate() + ' Deleted all local slash commands.');
 
                     await client.application.commands.set(slashCommandsArray);
-                    console.log(realDate() + ' Registered all slash commands ' + clr.underline('globally') + '.');
+                    console.log(realDate() + ' Registered all slash commands ' + 'globally'.underline + '.');
 
                 } else if (REGISTER === 'locally') { // locally
 
@@ -81,14 +80,14 @@ module.exports = (client) => {
                         guild.commands.permissions.set({ fullPermissions });
                     });
 
-                    console.log(realDate() + ' Registered all slash commands ' + clr.underline('locally') + '.');
+                    console.log(realDate() + ' Registered all slash commands ' + 'locally'.underline + '.');
 
                 } else {
-                    console.log(' >>> Wrong process.env.ENV value!');
+                    console.log(' >>> Wrong process.env.ENV value!'.brightRed);
                 };
 
             } catch (err) {
-                if (err) console.error(err);
+                if (err) console.error(`${err}`.brightRed);
             };
 
         });

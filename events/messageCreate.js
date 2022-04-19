@@ -1,10 +1,9 @@
-/* IMPORT & DEFINE */
+/* IMPORT */
 
 require('dotenv').config();
-const PREFIX = process.env.PREFIX;
-const COLOR_ERR = process.env.COLOR_ERR;
-const COLOR1 = process.env.COLOR1;
+const { PREFIX, COLOR_ERR, COLOR1 } = process.env;
 
+require('colors');
 const { MessageEmbed } = require('discord.js');
 
 const autoDelete = require('../functions/autoDelete.js')
@@ -76,7 +75,7 @@ Użyj komendy \`help\` po więcej inforamcji!
             await cmd.run(client, msg, args); // run command
         } catch (err) {
             if (err) {
-                console.error(err);
+                console.error(`${err}`.brightRed);
 
                 autoDelete(msg);
 

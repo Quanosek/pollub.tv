@@ -1,9 +1,13 @@
 /* IMPORT */
 
 require('dotenv').config();
-const TOKEN = process.env.TOKEN
+const { TOKEN, MONGO_URI } = process.env;
 
+require('colors');
 const fs = require('fs');
+const mongoose = require('mongoose');
+
+const realDate = require('./functions/realDate.js')
 
 /* MAIN DEFINE */
 
@@ -38,6 +42,18 @@ const commandsFolders = fs.readdirSync('./commands');
     client.handleEvents(eventFiles, './events');
     client.handleSlashCommands(slashCommandsFolders, './slashCommands');
     client.handleCommands(commandsFolders, './commands');
+
+    // mongoose connection
+    try {
+        if (!MONGO_URI) return;
+        await mongoose.connect(MONGO_URI, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+        }).then(() => console.log(realDate() + ' Connected to database.'));
+    } catch (err) {
+        if (err) return console.error(`${err}`.brightRed);
+    };
+
 })();
 
 client.login(TOKEN); // token

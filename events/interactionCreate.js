@@ -1,7 +1,9 @@
-/* IMPORT & DEFINE */
+/* IMPORT */
 
 require('dotenv').config();
-const COLOR_ERR = process.env.COLOR_ERR;
+const { COLOR_ERR } = process.env;
+
+require('colors');
 
 const { MessageEmbed } = require('discord.js');
 
@@ -35,7 +37,7 @@ module.exports = {
                 await cmd.run(client, interaction); // run slash command
             } catch (err) {
                 if (err) {
-                    console.error(err);
+                    console.error(`${err}`.brightRed);
 
                     return interaction.reply({
                         embeds: [new MessageEmbed()
