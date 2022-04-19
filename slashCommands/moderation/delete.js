@@ -6,12 +6,13 @@ const COLOR1 = process.env.COLOR1;
 
 const { MessageEmbed } = require('discord.js');
 
-const interactionAutoDelete = require('../../functions/interactionAutoDelete.js')
+const autoDelete = require('../../functions/autoDelete.js')
 
 /* COMMAND */
 
 module.exports = {
     name: 'delete',
+    aliases: ['d'],
     description: 'Usuwa określoną liczbę wiadomości z kanału.',
     userPermissions: 'MANAGE_MESSAGES',
     options: [{
@@ -77,8 +78,8 @@ module.exports = {
                         .setColor(COLOR1)
                         .setDescription(`🗑️ | Usunięto \`${m.size}\` ${translate} ${target}.`),
                     ],
-                }).then(interactionAutoDelete(interaction));
-            })
+                }).then(autoDelete(interaction, 5));
+            });
 
         } else {
 
@@ -102,7 +103,7 @@ module.exports = {
                         .setColor(COLOR1)
                         .setDescription(`🗑️ | Usunięto \`${m.size}\` ${translate}.`),
                     ],
-                }).then(interactionAutoDelete(interaction));
+                }).then(autoDelete(interaction, 5));
             });
 
         };

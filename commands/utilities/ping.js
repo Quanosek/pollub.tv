@@ -5,7 +5,7 @@ const COLOR1 = process.env.COLOR1;
 
 const { MessageEmbed } = require('discord.js');
 
-const msgAutoDelete = require('../../functions/msgAutoDelete.js')
+const autoDelete = require('../../functions/autoDelete.js')
 
 /* COMMAND */
 
@@ -16,7 +16,7 @@ module.exports = {
 
     async run(client, msg, args) {
 
-        msgAutoDelete(msg);
+        autoDelete(msg);
 
         return msg.reply({
             embeds: [new MessageEmbed()
@@ -36,6 +36,6 @@ module.exports = {
                 ],
             });
 
-        }).then(msg => msgAutoDelete(msg));
+        }).then(msg => autoDelete(msg));
     },
 };

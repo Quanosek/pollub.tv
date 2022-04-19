@@ -3,6 +3,7 @@
 require('dotenv').config();
 const PREFIX = process.env.PREFIX;
 const COLOR1 = process.env.COLOR1;
+const AUTHOR = process.env.AUTHOR;
 
 const { MessageEmbed } = require('discord.js');
 

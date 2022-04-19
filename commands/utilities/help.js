@@ -9,7 +9,7 @@ const COLOR2 = process.env.COLOR2;
 
 const { MessageEmbed } = require('discord.js');
 
-const msgAutoDelete = require('../../functions/msgAutoDelete.js')
+const autoDelete = require('../../functions/autoDelete.js')
 
 /* COMMAND */
 
@@ -20,7 +20,7 @@ module.exports = {
 
     async run(client, msg, args) {
 
-        msgAutoDelete(msg);
+        autoDelete(msg);
 
         return msg.reply({
             embeds: [new MessageEmbed()
@@ -37,7 +37,7 @@ Dedykowany bot techniczny dla serwera Telewizji Politechniki Lubelskiej.
                 .setFooter({ text: `Autor bota: ${AUTHOR}` })
                 .setTimestamp()
             ]
-        }).then(msg => msgAutoDelete(msg));
+        }).then(msg => autoDelete(msg, 20));
 
     }
 };

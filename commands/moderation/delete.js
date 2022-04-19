@@ -2,7 +2,7 @@
 
 module.exports = {
     name: 'delete',
-    aliases: ['d', 'clear', 'c'],
+    aliases: ['d'],
     description: 'Usuwa określoną liczbę wiadomości z kanału.',
     userPermissions: 'MANAGE_MESSAGES',
 

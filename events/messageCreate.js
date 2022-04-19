@@ -7,7 +7,7 @@ const COLOR1 = process.env.COLOR1;
 
 const { MessageEmbed } = require('discord.js');
 
-const msgAutoDelete = require('../functions/msgAutoDelete.js')
+const autoDelete = require('../functions/autoDelete.js')
 
 /* MESSAGE CREATE EVENT */
 
@@ -25,7 +25,7 @@ module.exports = {
 
         if (msg.content.match(mentionRegex)) {
 
-            msgAutoDelete(msg);
+            autoDelete(msg);
 
             return msg.reply({
                 embeds: [new MessageEmbed()
@@ -40,7 +40,7 @@ Użyj komendy \`help\` po więcej inforamcji!
                     .setFooter({ text: `Autor bota: ${AUTHOR}` })
                     .setTimestamp()
                 ]
-            }).then(msg => msgAutoDelete(msg));
+            }).then(msg => autoDelete(msg));
         };
 
         // avoid simple mistakes
@@ -62,14 +62,14 @@ Użyj komendy \`help\` po więcej inforamcji!
 
         if (!msg.member.permissions.has(cmd.userPermissions || [])) {
 
-            msgAutoDelete(msg)
+            autoDelete(msg)
 
             return msg.reply({
                 embeds: [new MessageEmbed()
                     .setColor(COLOR_ERR)
                     .setDescription('🛑 | Nie masz uprawnień do użycia tej komendy!')
                 ],
-            }).then(msg => msgAutoDelete(msg));
+            }).then(msg => autoDelete(msg));
         };
 
         try {
@@ -78,14 +78,14 @@ Użyj komendy \`help\` po więcej inforamcji!
             if (err) {
                 console.error(err);
 
-                msgAutoDelete(msg);
+                autoDelete(msg);
 
                 return msg.reply({
                     embeds: [new MessageEmbed()
                         .setColor(COLOR_ERR)
                         .setDescription('🛑 | Pojawił się błąd podczas uruchamiania komendy!')
                     ]
-                }).then(msg => msgAutoDelete(msg));
+                }).then(msg => autoDelete(msg));
             };
         };
 
