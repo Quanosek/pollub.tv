@@ -6,7 +6,7 @@ const { REGISTER, GUILD_ID } = process.env;
 require('colors');
 const fs = require('fs');
 
-const realDate = require('../functions/realDate.js')
+const realDate = require('../functions/realDate.js');
 
 /** SLASH COMMANDS HANDLER */
 

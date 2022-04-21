@@ -6,7 +6,8 @@ const { PREFIX, AUTHOR, COLOR_ERR, COLOR1 } = process.env;
 require('colors');
 const { MessageEmbed } = require('discord.js');
 
-const autoDelete = require('../functions/autoDelete.js')
+const autoDelete = require('../functions/autoDelete.js');
+const Schema = require('../schemas/guildConfigs.js');
 
 /** MESSAGE CREATE EVENT */
 
@@ -71,10 +72,19 @@ Użyj komendy \`help\` po więcej inforamcji!
             }).then(msg => autoDelete(msg));
         };
 
+        /** custom prefix */
+
+        const guildConfigs = Schema.findOne({ guildId: msg.guildId });
+        let prefix = PREFIX;
+
+        if (guildConfigs && guildConfigs.prefix) {
+            prefix = guildConfigs.prefix;
+        };
+
         /** finish */
 
         try {
-            await cmd.run(client, msg, args); // run command
+            await cmd.run(client, prefix, msg, args); // run command
         } catch (err) {
             if (err) {
 

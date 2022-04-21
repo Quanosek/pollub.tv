@@ -13,9 +13,9 @@ module.exports = {
     name: 'delete',
     aliases: ['d'],
     description: 'Usuwa określoną liczbę wiadomości z kanału.',
-    permissions: 'MANAGE_MESSAGES',
+    permissions: ['MANAGE_MESSAGES'],
 
-    async run(client, msg, args) {
+    async run(client, prefix, msg, args) {
 
         const amount = parseInt(args[0]) + 1; // define
 

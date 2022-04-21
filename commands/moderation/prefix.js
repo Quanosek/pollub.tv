@@ -6,22 +6,27 @@ const { NAME, PREFIX, AUTHOR, COLOR_ERR, COLOR1 } = process.env;
 const { MessageEmbed } = require('discord.js');
 
 const autoDelete = require('../../functions/autoDelete.js');
+const Schema = require('../../schemas/guildConfigs.js');
 
 /** COMMAND */
 
 module.exports = {
     name: 'prefix',
-    aliases: ['pref'],
+    aliases: ['px'],
     description: 'Zmiana prefixu bota.',
-    permissions: 'ADMINISTRATOR',
+    permissions: ['ADMINISTRATOR'],
 
-    async run(client, msg, args, prefix) {
+    async run(client, prefix, msg, args) {
+
+        const guildConfigs = Schema.findOne({ guildId: msg.guildId });
+
+        console.log(`${guildConfigs.prefix ?? prefix}`);
 
         /** change command */
 
-        if (args[0] === 'change' || args[0] === 'ch') {
+        if (args[0] === 'set') {
 
-            const newPrefix = args[1]
+            const newPrefix = args[1];
 
             /** errors */
 
@@ -42,7 +47,7 @@ module.exports = {
                 return msg.channel.send({
                     embeds: [new MessageEmbed()
                         .setColor(COLOR_ERR)
-                        .setDescription('⚙️ | Wybrany prefix jest zbyt długi!')
+                        .setDescription('⚙️ | Wybrany prefix jest zbyt długi *(max. 8 znaków)*!')
                     ],
                 }).then(msg => autoDelete(msg));
             };
@@ -62,12 +67,14 @@ module.exports = {
 
             autoDelete(msg, 15);
 
-            await db.set(`prefix_${msg.guild.id}`, newPrefix);
+            await Schema.findOneAndUpdate({ guildId: msg.guildId }, { prefix: newPrefix }, { upsert: true });
+
+            // await db.set(`prefix_${ msg.guild.id }`, newPrefix);
 
             return msg.channel.send({
                 embeds: [new MessageEmbed()
                     .setColor(COLOR1)
-                    .setDescription(`⚙️ | Zmieniono prefix na: \`${newPrefix}\``)
+                    .setDescription(`⚙️ | Ustawiono nowy prefix: \`${newPrefix}\``)
                 ],
             }).then(msg => autoDelete(msg, 15));
         };
@@ -97,13 +104,15 @@ module.exports = {
                 .setTitle(`⚙️ | Menu zmiany prefixu`)
                 .setDescription(`
 Komenda pozwala na zmianę prefixu tylko dla tego serwera, w razie zapomnienia prefixu zawsze można wspomnieć bota, tzn. wpisać @${NAME}.
+
 ** ● Komendy:**
-\`${prefix}prefix change <nowy prefix>\` - ustawia nowy prefix
+\`${prefix}prefix set <prefix>\` - ustawia nowy prefix
 \`${prefix}prefix reset\` - przywraca domyślny prefix (\`${PREFIX}\`)
+
 ** ● Informacje dodatkowe:**
-Wszystkie komendy obsługują również skróty np. zamiast pisać \`${PREFIX}prefix\`, równie dobrze możesz wpisać: \`${PREFIX}pf\` itp..
+Wszystkie komendy obsługują również skróty np. zamiast pisać \`${PREFIX}prefix\`, równie dobrze możesz wpisać: \`${PREFIX}px\` itp..
                 `)
-                .setFooter({ text: `Bot stworzony przez: ${AUTHOR}` })
+                .setFooter({ text: `Autor: ${AUTHOR}` })
                 .setTimestamp()
             ],
         }).then(msg => autoDelete(msg, 45));

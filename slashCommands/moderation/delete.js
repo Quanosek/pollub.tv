@@ -5,7 +5,7 @@ const { COLOR_ERR, COLOR1 } = process.env;
 
 const { MessageEmbed } = require('discord.js');
 
-const autoDelete = require('../../functions/autoDelete.js')
+const autoDelete = require('../../functions/autoDelete.js');
 
 /** COMMAND */
 
@@ -13,7 +13,8 @@ module.exports = {
     name: 'delete',
     aliases: ['d'],
     description: 'Usuwa określoną liczbę wiadomości z kanału.',
-    userPermissions: 'MANAGE_MESSAGES',
+    permissions: ['MANAGE_MESSAGES'],
+
     options: [{
             name: 'amout',
             description: 'Określ, ile wiadomości ma zostać usuniętych.',

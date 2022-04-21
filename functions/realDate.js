@@ -9,13 +9,16 @@ function realDate() {
     const date = new Date()
 
     options = {
-        year: 'numeric',
-        month: 'numeric',
+
+        timeZone: 'Europe/Brussels',
+
         day: 'numeric',
+        month: 'numeric',
+        year: 'numeric',
+
         hour: 'numeric',
         minute: 'numeric',
         second: 'numeric',
-        timeZone: 'Europe/Brussels',
     };
 
     /** formatted date export */

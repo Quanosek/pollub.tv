@@ -1,3 +1,5 @@
+console.clear(); // start with clear terminal
+
 /** IMPORT */
 
 require('dotenv').config();

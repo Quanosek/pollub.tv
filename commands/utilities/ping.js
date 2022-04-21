@@ -5,16 +5,16 @@ const { COLOR1 } = process.env;
 
 const { MessageEmbed } = require('discord.js');
 
-const autoDelete = require('../../functions/autoDelete.js')
+const autoDelete = require('../../functions/autoDelete.js');
 
 /** COMMAND */
 
 module.exports = {
     name: 'ping',
-    aliases: ['p'],
+    aliases: ['pg'],
     description: 'Ping-Pong!',
 
-    async run(client, msg, args) {
+    async run(client, prefix, msg, args) {
 
         autoDelete(msg);
 

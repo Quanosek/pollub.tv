@@ -5,7 +5,7 @@ const { NAME, PREFIX, ICON, AUTHOR, COLOR2 } = process.env;
 
 const { MessageEmbed } = require('discord.js');
 
-const autoDelete = require('../../functions/autoDelete.js')
+const autoDelete = require('../../functions/autoDelete.js');
 
 /** COMMAND */
 
@@ -14,7 +14,7 @@ module.exports = {
     aliases: ['h'],
     description: 'Pomoc wszelaka!',
 
-    async run(client, msg, args) {
+    async run(client, prefix, msg, args) {
 
         autoDelete(msg, 20);
 

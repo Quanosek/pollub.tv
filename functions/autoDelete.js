@@ -2,7 +2,7 @@
 
 require('colors');
 
-const realDate = require('./realDate.js')
+const realDate = require('./realDate.js');
 
 /** FUNCTION */
 

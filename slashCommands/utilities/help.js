@@ -5,7 +5,7 @@ const { NAME, ICON, AUTHOR, COLOR2 } = process.env;
 
 const { MessageEmbed } = require('discord.js');
 
-const autoDelete = require('../../functions/autoDelete.js')
+const autoDelete = require('../../functions/autoDelete.js');
 
 /** COMMAND */
 
