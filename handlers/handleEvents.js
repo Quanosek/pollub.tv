@@ -1,4 +1,4 @@
-/* EVENTS HANDLER */
+/** EVENTS HANDLER */
 
 module.exports = (client) => {
     client.handleEvents = async(eventFiles, path) => {
@@ -14,6 +14,5 @@ module.exports = (client) => {
             };
 
         };
-
     };
 };

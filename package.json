@@ -1,7 +1,7 @@
 {
     "name": "pollub.tv",
-    "version": "1.1.0",
-    "description": "Oficjalny bot Telewizji Politechniki Lubelskiej pollub.tv",
+    "version": "1.2.0",
+    "description": "Oficjalny bot Telewizji Politechniki Lubelskiej (pollub.tv)",
     "main": "index.js",
     "scripts": {
         "dev": "nodemon index.js"

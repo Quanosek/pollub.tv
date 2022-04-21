@@ -1,4 +1,4 @@
-/* IMPORT */
+/** IMPORT */
 
 require('dotenv').config();
 const { COLOR_ERR, COLOR1 } = process.env;
@@ -7,7 +7,7 @@ const { MessageEmbed } = require('discord.js');
 
 const autoDelete = require('../../functions/autoDelete.js')
 
-/* COMMAND */
+/** COMMAND */
 
 module.exports = {
     name: 'delete',
@@ -29,10 +29,14 @@ module.exports = {
 
     async run(client, interaction) {
 
+        /** define */
+
         const { channel, options } = interaction;
 
         const amount = options.getNumber('amout');
         const target = options.getMember('target');
+
+        /** error */
 
         if (amount < 1 || amount > 100) {
             return interaction.reply({
@@ -46,6 +50,8 @@ module.exports = {
 
         if (target) {
 
+            /** define & filter */
+
             const messages = await channel.messages.fetch();
 
             let i = 0;
@@ -57,7 +63,9 @@ module.exports = {
                 };
             });
 
-            return channel.bulkDelete(filtered, true).then(m => {
+            return channel.bulkDelete(filtered, true).then(m => { // realization
+
+                /** error */
 
                 if (m.size === 0) {
                     return interaction.reply({
@@ -69,8 +77,12 @@ module.exports = {
                     });
                 };
 
+                /** translation */
+
                 if (m.size === 1) translate = 'wiadomość';
                 else translate = 'wiadomości';
+
+                /** finish */
 
                 return interaction.reply({
                     embeds: [new MessageEmbed()
@@ -80,9 +92,11 @@ module.exports = {
                 }).then(autoDelete(interaction, 10));
             });
 
-        } else {
+        } else { // no target
 
-            return channel.bulkDelete(amount, true).then(m => {
+            return channel.bulkDelete(amount, true).then(m => { //realization
+
+                /** error */
 
                 if (m.size === 0) {
                     return interaction.reply({
@@ -94,8 +108,12 @@ module.exports = {
                     });
                 };
 
+                /** translation */
+
                 if (m.size === 1) translate = 'wiadomość';
                 else translate = 'wiadomości';
+
+                /** finish */
 
                 return interaction.reply({
                     embeds: [new MessageEmbed()
@@ -103,9 +121,8 @@ module.exports = {
                         .setDescription(`🗑️ | Usunięto \`${m.size}\` ${translate}.`),
                     ],
                 }).then(autoDelete(interaction, 10));
+
             });
-
         };
-
     },
 };

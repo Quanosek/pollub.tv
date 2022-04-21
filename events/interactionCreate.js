@@ -1,4 +1,4 @@
-/* IMPORT */
+/** IMPORT */
 
 require('dotenv').config();
 const { COLOR_ERR } = process.env;
@@ -7,23 +7,26 @@ require('colors');
 
 const { MessageEmbed } = require('discord.js');
 
-/* INTERACTION CREATE EVENT */
+/** INTERACTION CREATE EVENT */
 
 module.exports = {
     name: 'interactionCreate',
 
     async run(client, interaction) {
 
-        // Slash Commands Handling
-
         if (interaction.isCommand()) {
 
-            const cmd = client.slashCommands.get(interaction.commandName);
-            if (!cmd) return;
+            /** define */
 
+            const cmd = client.slashCommands.get(interaction.commandName);
             interaction.member = interaction.guild.members.cache.get(interaction.user.id);
 
-            if (!interaction.member.permissions.has(cmd.userPermissions || [])) {
+            /** error */
+
+            if (!cmd) return; // no command
+
+            if (!interaction.member.permissions.has(cmd.permissions || [])) { // no permissions
+
                 return interaction.reply({
                     embeds: [new MessageEmbed()
                         .setColor(COLOR_ERR)
@@ -33,11 +36,14 @@ module.exports = {
                 });
             };
 
+            /** finish */
+
             try {
                 await cmd.run(client, interaction); // run slash command
             } catch (err) {
                 if (err) {
-                    console.error(`${err}`.brightRed);
+
+                    console.error(` >>> ${err}`.brightRed);
 
                     return interaction.reply({
                         embeds: [new MessageEmbed()
@@ -46,10 +52,10 @@ module.exports = {
                         ],
                         ephemeral: true,
                     });
+
                 };
             };
 
         };
-
     },
 };

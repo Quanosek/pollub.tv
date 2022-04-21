@@ -1,4 +1,4 @@
-/* IMPORT */
+/** IMPORT */
 
 require('dotenv').config();
 const { NAME, ICON, AUTHOR, COLOR2 } = process.env;
@@ -7,7 +7,7 @@ const { MessageEmbed } = require('discord.js');
 
 const autoDelete = require('../../functions/autoDelete.js')
 
-/* COMMAND */
+/** COMMAND */
 
 module.exports = {
     name: 'help',
@@ -15,7 +15,7 @@ module.exports = {
 
     async run(client, interaction) {
 
-        return interaction.reply({
+        return interaction.reply({ // send
 
             embeds: [new MessageEmbed()
                 .setColor(COLOR2)

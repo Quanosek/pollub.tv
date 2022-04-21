@@ -1,11 +1,11 @@
-/* IMPORT */
+/** IMPORT */
 
 require('dotenv').config();
 const { COLOR1 } = process.env;
 
 const { MessageEmbed } = require('discord.js');
 
-/* COMMAND */
+/** COMMAND */
 
 module.exports = {
     name: 'ping',
@@ -13,7 +13,7 @@ module.exports = {
 
     async run(client, interaction) {
 
-        interaction.reply({
+        interaction.reply({ // send
 
             embeds: [new MessageEmbed()
                 .setColor(COLOR1)
@@ -22,7 +22,7 @@ module.exports = {
             ephemeral: true,
             fetchReply: true,
 
-        }).then(resultmsg => {
+        }).then(resultmsg => { // modify sended
 
             interaction.editReply({
                 embeds: [new MessageEmbed()
@@ -34,7 +34,7 @@ Opóźnienie API: \`${client.ws.ping} ms\`
                 `),
                 ],
             });
-
         });
+
     },
 };

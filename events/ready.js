@@ -1,10 +1,10 @@
-/* IMPORT */
+/** IMPORT */
 
 require('colors');
 
 const realDate = require('../functions/realDate.js')
 
-/* READY EVENT */
+/** READY EVENT */
 
 module.exports = {
     name: 'ready',

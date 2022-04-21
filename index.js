@@ -1,4 +1,4 @@
-/* IMPORT */
+/** IMPORT */
 
 require('dotenv').config();
 const { TOKEN, MONGO_URI } = process.env;
@@ -9,12 +9,13 @@ const mongoose = require('mongoose');
 
 const realDate = require('./functions/realDate.js')
 
-/* MAIN DEFINE */
+/** MAIN DEFINE */
 
 const { Client, Collection } = require('discord.js');
 const client = new Client({ intents: 32767 }); // define client
 
-// commands collections
+/** commands collections */
+
 client.commands = new Collection();
 client.slashCommands = new Collection();
 
@@ -29,7 +30,7 @@ const eventFiles = fs
 const slashCommandsFolders = fs.readdirSync('./slashCommands');
 const commandsFolders = fs.readdirSync('./commands');
 
-/* MAIN FUNCTION */
+/** MAIN FUNCTION */
 
 (async() => {
 
@@ -37,13 +38,14 @@ const commandsFolders = fs.readdirSync('./commands');
         require(`./handlers/${file}`)(client);
     };
 
-    // handlers run
+    /** handlers run */
 
     client.handleEvents(eventFiles, './events');
     client.handleSlashCommands(slashCommandsFolders, './slashCommands');
     client.handleCommands(commandsFolders, './commands');
 
-    // mongoose connection
+    /** mongoose connection */
+
     try {
         if (!MONGO_URI) return;
         await mongoose.connect(MONGO_URI, {
@@ -51,7 +53,7 @@ const commandsFolders = fs.readdirSync('./commands');
             useUnifiedTopology: true,
         }).then(() => console.log(realDate() + ' Connected to database.'));
     } catch (err) {
-        if (err) return console.error(`${err}`.brightRed);
+        if (err) return console.error(` >>> ${err}`.brightRed);
     };
 
 })();

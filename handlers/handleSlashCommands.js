@@ -1,4 +1,4 @@
-/* IMPORT */
+/** IMPORT */
 
 require('dotenv').config();
 const { REGISTER, GUILD_ID } = process.env;
@@ -8,12 +8,14 @@ const fs = require('fs');
 
 const realDate = require('../functions/realDate.js')
 
-/* SLASH COMMANDS HANDLER */
+/** SLASH COMMANDS HANDLER */
 
 module.exports = (client) => {
     client.handleSlashCommands = async(slashCommandsFolders, path) => {
 
         const slashCommandsArray = [];
+
+        /** search for commands files */
 
         for (folder of slashCommandsFolders) {
             const commandFiles = fs
@@ -35,7 +37,7 @@ module.exports = (client) => {
 
         client.on('ready', async() => {
 
-            /* register slash commands */
+            /** register slash commands */
 
             try {
                 console.log(realDate() + ' Started refreshing slash commands.');
@@ -57,7 +59,7 @@ module.exports = (client) => {
 
                     await guild.commands.set(slashCommandsArray).then((cmd) => {
 
-                        /* permissions check */
+                        /** permissions check */
 
                         const getRoles = (commandName) => {
                             const permissions = slashCommandsArray.find(x => x.name === commandName).userPermissions;
@@ -87,10 +89,9 @@ module.exports = (client) => {
                 };
 
             } catch (err) {
-                if (err) console.error(`${err}`.brightRed);
+                if (err) console.error(` >>> ${err}`.brightRed);
             };
 
         });
-
     };
 };

@@ -1,13 +1,15 @@
-/* IMPORT */
+/** IMPORT */
 
 const fs = require('fs');
 
-/* COMMANDS HANDLER */
+/** COMMANDS HANDLER */
 
 module.exports = (client) => {
     client.handleCommands = async(commandFolders, path) => {
 
         for (folder of commandFolders) {
+
+            /** search for commands files */
 
             const commandFiles = fs
                 .readdirSync(`${path}/${folder}`)
@@ -16,10 +18,9 @@ module.exports = (client) => {
             for (const file of commandFiles) {
                 const cmd = require(`../commands/${folder}/${file}`);
 
-                client.commands.set((cmd.name), cmd); //run command
+                client.commands.set((cmd.name), cmd); // run command
             };
 
         };
-
     };
 };

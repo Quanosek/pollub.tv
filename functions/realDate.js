@@ -1,8 +1,8 @@
-/* IMPORT */
+/** IMPORT */
 
 require('colors');
 
-/* FUNCTION */
+/** FUNCTION */
 
 function realDate() {
 
@@ -18,7 +18,8 @@ function realDate() {
         timeZone: 'Europe/Brussels',
     };
 
-    // special formatted date
+    /** formatted date export */
+
     const newDate = new Intl.DateTimeFormat('pl-PL', options).format(date);
 
     return `[${newDate}]`.brightCyan

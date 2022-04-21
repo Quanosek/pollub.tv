@@ -1,4 +1,4 @@
-/* IMPORT */
+/** IMPORT */
 
 require('dotenv').config();
 const { COLOR1 } = process.env;
@@ -7,7 +7,7 @@ const { MessageEmbed } = require('discord.js');
 
 const autoDelete = require('../../functions/autoDelete.js')
 
-/* COMMAND */
+/** COMMAND */
 
 module.exports = {
     name: 'ping',
@@ -18,14 +18,14 @@ module.exports = {
 
         autoDelete(msg);
 
-        return msg.reply({
+        return msg.reply({ // send
             embeds: [new MessageEmbed()
                 .setColor(COLOR1)
                 .setDescription('🏓 | Pong!')
-            ]
+            ],
         }).then(resultmsg => {
 
-            return resultmsg.edit({
+            return resultmsg.edit({ // modify sended
                 embeds: [new MessageEmbed()
                     .setColor(COLOR1)
                     .setTitle('🏓 | Pong!')
@@ -37,5 +37,6 @@ module.exports = {
             });
 
         }).then(msg => autoDelete(msg));
+
     },
 };

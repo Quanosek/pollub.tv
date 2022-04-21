@@ -1,23 +1,25 @@
-/* IMPORT */
+/** IMPORT */
 
 require('dotenv').config();
 const { COLOR_ERR, COLOR1 } = process.env;
 
 const { MessageEmbed } = require('discord.js');
 
-const autoDelete = require('../../functions/autoDelete.js')
+const autoDelete = require('../../functions/autoDelete.js');
 
-/* COMMAND */
+/** COMMAND */
 
 module.exports = {
     name: 'delete',
     aliases: ['d'],
     description: 'Usuwa określoną liczbę wiadomości z kanału.',
-    userPermissions: 'MANAGE_MESSAGES',
+    permissions: 'MANAGE_MESSAGES',
 
     async run(client, msg, args) {
 
-        const amount = parseInt(args[0]) + 1;
+        const amount = parseInt(args[0]) + 1; // define
+
+        /** error */
 
         if (!amount) {
 
@@ -32,12 +34,16 @@ module.exports = {
 
         };
 
-        if (args[1]) {
+        if (args[1]) { // if amount
+
+            /** define */
 
             const targetName = args[1];
             const targetId = args[1].replace(/[\\<>@#&!]/g, '');
 
             const mention = msg.mentions.members.first();
+
+            /** error */
 
             if (mention && targetId !== mention.id) {
                 autoDelete(msg, 5);
@@ -50,7 +56,9 @@ module.exports = {
                 }).then(msg => autoDelete(msg, 5));
             };
 
-            const messages = await msg.channel.messages.fetch();
+            const messages = await msg.channel.messages.fetch(); // define
+
+            /** filter */
 
             let i = 0;
             const filtered = [];
@@ -60,6 +68,8 @@ module.exports = {
                     i++;
                 };
             });
+
+            /** error */
 
             return msg.channel.bulkDelete(filtered, true).then(m => {
 
@@ -75,8 +85,12 @@ module.exports = {
                     }).then(msg => autoDelete(msg, 5));
                 };
 
+                /** translation */
+
                 if (m.size === 2) translate = 'wiadomość';
                 else translate = 'wiadomości';
+
+                /** finish */
 
                 return msg.channel.send({
                     embeds: [new MessageEmbed()
@@ -86,9 +100,11 @@ module.exports = {
                 }).then(msg => autoDelete(msg, 10));
             });
 
-        } else {
+        } else { // if no target
 
             return msg.channel.bulkDelete(amount, true).then(m => {
+
+                /** error */
 
                 if (m.size <= 1) {
                     return msg.channel.send({
@@ -99,8 +115,12 @@ module.exports = {
                     }).then(msg => autoDelete(msg, 5));
                 };
 
+                /** translation */
+
                 if (m.size === 2) translate = 'wiadomość';
                 else translate = 'wiadomości';
+
+                /** finish */
 
                 return msg.channel.send({
                     embeds: [new MessageEmbed()
