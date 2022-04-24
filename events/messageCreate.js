@@ -23,9 +23,10 @@ module.exports = {
 
         let db = await schema.findOne({ guildId: msg.guild.id });
         if (!db) db = await schema.create({
-            guildName: msg.guild.name,
+
             guildId: msg.guild.id,
             prefix: PREFIX,
+
         });
 
         let prefix = db.prefix; // custom prefix

@@ -6,7 +6,6 @@ const { Schema, model } = require('mongoose');
 
 const schema = new Schema({
 
-    guildName: String,
     guildId: String,
     prefix: String,
 
