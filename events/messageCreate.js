@@ -4,10 +4,11 @@ require('dotenv').config();
 const { PREFIX, AUTHOR, COLOR_ERR, COLOR1 } = process.env;
 
 require('colors');
+
 const { MessageEmbed } = require('discord.js');
 
 const autoDelete = require('../functions/autoDelete.js');
-const Schema = require('../schemas/guildConfigs.js');
+const schema = require('../schemas/guilds.js');
 
 /** MESSAGE CREATE EVENT */
 
@@ -17,6 +18,17 @@ module.exports = {
     async run(client, msg) {
 
         if (!msg.channel.permissionsFor(msg.guild.me).has('SEND_MESSAGES')) return; // if no permissions to send
+
+        /** manage database */
+
+        let db = await schema.findOne({ guildId: msg.guild.id });
+        if (!db) db = await schema.create({
+            guildName: msg.guild.name,
+            guildId: msg.guild.id,
+            prefix: PREFIX,
+        });
+
+        let prefix = db.prefix; // custom prefix
 
         /** reply on mention */
 
@@ -33,7 +45,7 @@ module.exports = {
                     .setDescription(`
 Jestem dedykowanym botem dla serwera dla osób zaangażowanych w rozwój Telewizji Politechniki Lubelskiej.
 
-Mój prefix to \`${PREFIX}\`
+Mój prefix to \`${prefix}\`
 Użyj komendy \`help\` po więcej inforamcji!
                     `)
                     .setFooter({ text: `Autor bota: ${AUTHOR}` })
@@ -44,13 +56,13 @@ Użyj komendy \`help\` po więcej inforamcji!
 
         /** avoid simple mistakes */
 
-        if (!msg.content.toLowerCase().startsWith(PREFIX) ||
+        if (!msg.content.toLowerCase().startsWith(prefix) ||
             !msg.guild ||
             msg.author.bot ||
             msg.channel.type === 'dm'
         ) return;
 
-        const [cmdName, ...args] = msg.content.slice(PREFIX.length).trim().split(/ +/g);
+        const [cmdName, ...args] = msg.content.slice(prefix.length).trim().split(/ +/g);
 
         /** find command or aliases */
 
@@ -70,15 +82,6 @@ Użyj komendy \`help\` po więcej inforamcji!
                     .setDescription('🛑 | Nie masz uprawnień do użycia tej komendy!')
                 ],
             }).then(msg => autoDelete(msg));
-        };
-
-        /** custom prefix */
-
-        const guildConfigs = Schema.findOne({ guildId: msg.guildId });
-        let prefix = PREFIX;
-
-        if (guildConfigs && guildConfigs.prefix) {
-            prefix = guildConfigs.prefix;
         };
 
         /** finish */

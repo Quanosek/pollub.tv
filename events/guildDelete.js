@@ -3,6 +3,7 @@
 require('colors');
 
 const realDate = require('../functions/realDate.js');
+const schema = require('../schemas/guilds.js');
 
 /** GUILD DELETE EVENT */
 
@@ -11,9 +12,9 @@ module.exports = {
 
     async run(client, guild) {
 
-        /** left guild log */
+        await schema.deleteOne({ guildId: guild.id }); // delete db
 
-        console.log(realDate() + ` Guild: ${guild.name}, ${guild.id}\n >>> Bot ` + `left`.brightRed + ` the server!`);
+        console.log(realDate() + ` Guild: ${guild.name}, ${guild.id}\n >>> Bot ` + `left`.brightRed + ` the server!`); // log
 
     },
 };

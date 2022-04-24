@@ -1,7 +1,7 @@
 /** IMPORT */
 
 require('dotenv').config();
-const { NAME, PREFIX, ICON, AUTHOR, COLOR2 } = process.env;
+const { NAME, ICON, AUTHOR, COLOR2 } = process.env;
 
 const { MessageEmbed } = require('discord.js');
 
@@ -28,7 +28,7 @@ Dedykowany bot techniczny dla serwera Telewizji Politechniki Lubelskiej.
 
 **Więcej informacji już niedługo...**
 
-*Wszystkie komendy obsługują skróty np. zamiast pisać \`${PREFIX}ping\`, równie dobrze możesz wpisać: \`${PREFIX}p\` itp...*
+*Wszystkie komendy obsługują skróty np. zamiast pisać \`${prefix}ping\`, równie dobrze możesz wpisać: \`${prefix}p\` itp...*
                 `)
                 .setFooter({ text: `Autor bota: ${AUTHOR}` })
                 .setTimestamp()

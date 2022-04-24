@@ -1,8 +1,12 @@
 /** IMPORT */
 
+require('dotenv').config();
+const { PREFIX } = process.env;
+
 require('colors');
 
 const realDate = require('../functions/realDate.js');
+const schema = require('../schemas/guilds.js');
 
 /** GUILD CREATE EVENT */
 
@@ -11,9 +15,15 @@ module.exports = {
 
     async run(client, guild) {
 
-        /** join guild log */
+        /** database */
 
-        console.log(realDate() + ` Guild: ${guild.name}, ${guild.id}\n >>> Bot ` + `joined`.brightGreen + ` to the server!`);
+        await schema.create({
+            guildName: guild.name,
+            guildId: guild.id,
+            prefix: PREFIX,
+        });
+
+        console.log(realDate() + ` Guild: ${guild.name}, ${guild.id}\n >>> Bot ` + `joined`.brightGreen + ` to the server!`); // log
 
     },
 };

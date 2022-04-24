@@ -6,7 +6,7 @@ const { NAME, PREFIX, AUTHOR, COLOR_ERR, COLOR1 } = process.env;
 const { MessageEmbed } = require('discord.js');
 
 const autoDelete = require('../../functions/autoDelete.js');
-const Schema = require('../../schemas/guildConfigs.js');
+const schema = require('../../schemas/guilds.js');
 
 /** COMMAND */
 
@@ -18,9 +18,7 @@ module.exports = {
 
     async run(client, prefix, msg, args) {
 
-        const guildConfigs = Schema.findOne({ guildId: msg.guildId });
-
-        console.log(`${guildConfigs.prefix ?? prefix}`);
+        const db = await schema.findOne({ guildId: msg.guild.id }); // database
 
         /** change command */
 
@@ -67,9 +65,8 @@ module.exports = {
 
             autoDelete(msg, 15);
 
-            await Schema.findOneAndUpdate({ guildId: msg.guildId }, { prefix: newPrefix }, { upsert: true });
-
-            // await db.set(`prefix_${ msg.guild.id }`, newPrefix);
+            db.prefix = newPrefix;
+            await db.save();
 
             return msg.channel.send({
                 embeds: [new MessageEmbed()
@@ -84,7 +81,8 @@ module.exports = {
         if (args[0] === 'reset' || args[0] === 'r') {
             autoDelete(msg, 15);
 
-            if (db.get(`prefix_${msg.guild.id}`)) { await db.delete(`prefix_${msg.guild.id}`) }
+            db.prefix = PREFIX;
+            await db.save();
 
             return msg.channel.send({
                 embeds: [new MessageEmbed()
@@ -94,7 +92,7 @@ module.exports = {
             }).then(msg => autoDelete(msg, 15));
         };
 
-        /** help command */
+        /** help menu */
 
         autoDelete(msg, 45);
 
@@ -110,7 +108,7 @@ Komenda pozwala na zmianę prefixu tylko dla tego serwera, w razie zapomnienia p
 \`${prefix}prefix reset\` - przywraca domyślny prefix (\`${PREFIX}\`)
 
 ** ● Informacje dodatkowe:**
-Wszystkie komendy obsługują również skróty np. zamiast pisać \`${PREFIX}prefix\`, równie dobrze możesz wpisać: \`${PREFIX}px\` itp..
+Wszystkie komendy obsługują również skróty np. zamiast pisać \`${prefix}prefix\`, równie dobrze możesz wpisać: \`${prefix}px\` itp..
                 `)
                 .setFooter({ text: `Autor: ${AUTHOR}` })
                 .setTimestamp()
