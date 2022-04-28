@@ -42,47 +42,23 @@ module.exports = (client) => {
             try {
                 console.log(realDate() + ' Started refreshing slash commands.');
 
+                const guild = client.guilds.cache.get(GUILD_ID);
+
                 if (REGISTER === 'globally') { // globaly
 
                     // await guild.commands.set([]);
-                    // console.log(realDate() + ' Deleted all local slash commands.');
+                    // console.log(realDate() + ' Deleted'.brightRed + ' all local slash commands.');
 
                     await client.application.commands.set(slashCommandsArray);
-                    console.log(realDate() + ' Registered all slash commands ' + 'globally'.underline + '.');
+                    console.log(realDate() + ' Registered all slash commands ' + 'globally'.brightYellow + '.');
 
                 } else if (REGISTER === 'locally') { // locally
 
                     // await client.application.commands.set([]);
-                    // console.log(realDate() + ' Deleted all global slash commands.');
+                    // console.log(realDate() + ' Deleted'.brightRed + ' all global slash commands.');
 
-                    const guild = client.guilds.cache.get(GUILD_ID);
-
-                    await guild.commands.set(slashCommandsArray).then((cmd) => {
-
-                        /** permissions check */
-
-                        const getRoles = (commandName) => {
-                            const permissions = slashCommandsArray.find(x => x.name === commandName).userPermissions;
-
-                            if (!permissions) return null;
-                            return guild.roles.cache.filter(x => x.permissions.has(permissions) && !x.managed);
-                        };
-
-                        const fullPermissions = cmd.reduce((accumulator, role) => {
-                            const roles = getRoles(role.name);
-                            if (!roles) return accumulator;
-
-                            const permissions = roles.reduce((a, r) => {
-                                return [...a, { id: r.id, type: 'ROLE', permission: true }];
-                            }, []);
-
-                            return [...accumulator, { id: role.id, permissions }];
-                        }, []);
-
-                        guild.commands.permissions.set({ fullPermissions });
-                    });
-
-                    console.log(realDate() + ' Registered all slash commands ' + 'locally'.underline + '.');
+                    await guild.commands.set(slashCommandsArray);
+                    console.log(realDate() + ' Registered all slash commands ' + 'locally'.brightYellow + '.');
 
                 } else {
                     console.log(' >>> Wrong process.env.ENV value!'.brightRed);

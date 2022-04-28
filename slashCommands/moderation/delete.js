@@ -7,7 +7,7 @@ const { MessageEmbed } = require('discord.js');
 
 const autoDelete = require('../../functions/autoDelete.js');
 
-/** COMMAND */
+/** DELETE COMMAND */
 
 module.exports = {
     name: 'delete',
@@ -37,7 +37,7 @@ module.exports = {
         const amount = options.getNumber('amout');
         const target = options.getMember('target');
 
-        /** error */
+        /** ERROR */
 
         if (amount < 1 || amount > 100) {
             return interaction.reply({
@@ -48,6 +48,8 @@ module.exports = {
                 ephemeral: true,
             });
         };
+
+        /** WITH FILTER */
 
         if (target) {
 
@@ -93,7 +95,9 @@ module.exports = {
                 }).then(autoDelete(interaction, 10));
             });
 
-        } else { // no target
+        } else {
+
+            /** WITHOUT FILTER */
 
             return channel.bulkDelete(amount, true).then(m => { //realization
 

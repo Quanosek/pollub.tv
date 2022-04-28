@@ -1,7 +1,7 @@
 /** IMPORT */
 
 require('dotenv').config();
-const { PREFIX, AUTHOR, COLOR_ERR, COLOR1 } = process.env;
+const { PREFIX, AUTHOR_NAME, AUTHOR_NICK, AUTHOR_HASH, COLOR_ERR, COLOR1 } = process.env;
 
 require('colors');
 
@@ -49,8 +49,7 @@ Jestem dedykowanym botem dla serwera dla osób zaangażowanych w rozwój Telewiz
 Mój prefix to \`${prefix}\`
 Użyj komendy \`help\` po więcej inforamcji!
                     `)
-                    .setFooter({ text: `Autor bota: ${AUTHOR}` })
-                    .setTimestamp()
+                    .setFooter({ text: `Autor bota: ${AUTHOR_NAME} (${AUTHOR_NICK}#${AUTHOR_HASH})` })
                 ],
             }).then(msg => autoDelete(msg));
         };
@@ -89,6 +88,7 @@ Użyj komendy \`help\` po więcej inforamcji!
 
         try {
             await cmd.run(client, prefix, msg, args); // run command
+
         } catch (err) {
             if (err) {
 

@@ -1,13 +1,13 @@
 /** IMPORT */
 
 require('dotenv').config();
-const { NAME, ICON, AUTHOR, COLOR2 } = process.env;
+const { NAME, ICON, AUTHOR_NAME, AUTHOR_NICK, AUTHOR_HASH, COLOR1 } = process.env;
 
 const { MessageEmbed } = require('discord.js');
 
 const autoDelete = require('../../functions/autoDelete.js');
 
-/** COMMAND */
+/** HELP COMMAND */
 
 module.exports = {
     name: 'help',
@@ -18,7 +18,7 @@ module.exports = {
         return interaction.reply({ // send
 
             embeds: [new MessageEmbed()
-                .setColor(COLOR2)
+                .setColor(COLOR1)
                 .setThumbnail(ICON)
                 .setTitle(`👋 | **Hej, jestem ${NAME}!**`)
                 .setDescription(`
@@ -26,8 +26,7 @@ Dedykowany bot techniczny dla serwera Telewizji Politechniki Lubelskiej.
 
 **Więcej informacji już niedługo...**
                 `)
-                .setFooter({ text: `Autor bota: ${AUTHOR}` })
-                .setTimestamp()
+                .setFooter({ text: `Autor bota: ${AUTHOR_NAME} (${AUTHOR_NICK}#${AUTHOR_HASH})` })
             ],
 
         }).then(autoDelete(interaction, 20));

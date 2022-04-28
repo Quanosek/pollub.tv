@@ -1,11 +1,11 @@
 /** IMPORT */
 
 require('dotenv').config();
-const { COLOR1 } = process.env;
+const { AUTHOR_NAME, AUTHOR_NICK, AUTHOR_HASH, COLOR1 } = process.env;
 
 const { MessageEmbed } = require('discord.js');
 
-/** COMMAND */
+/** PING COMMAND */
 
 module.exports = {
     name: 'ping',
@@ -31,7 +31,8 @@ module.exports = {
                     .setDescription(`
 Opóźnienie bota: \`${resultmsg.createdTimestamp - interaction.createdTimestamp} ms\`
 Opóźnienie API: \`${client.ws.ping} ms\`
-                `),
+                    `)
+                    .setFooter({ text: `Autor bota: ${AUTHOR_NAME} (${AUTHOR_NICK}#${AUTHOR_HASH})` })
                 ],
             });
         });

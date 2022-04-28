@@ -14,6 +14,8 @@ module.exports = {
 
     async run(client, interaction) {
 
+        /** COMMANDS */
+
         if (interaction.isCommand()) {
 
             /** define */
@@ -40,9 +42,43 @@ module.exports = {
 
             try {
                 await cmd.run(client, interaction); // run slash command
+
             } catch (err) {
                 if (err) {
 
+                    console.error(` >>> ${err}`.brightRed);
+
+                    return interaction.reply({
+                        embeds: [new MessageEmbed()
+                            .setColor(COLOR_ERR)
+                            .setDescription('🛑 | Pojawił się błąd podczas uruchamiania komendy!')
+                        ],
+                        ephemeral: true,
+                    });
+
+                };
+            };
+
+        };
+
+        /** BUTTONS */
+
+        if (interaction.isButton()) {
+
+            /** define */
+
+            const [name, ...params] = interaction.customId.split('-');
+            const button = client.buttons.get(name);
+
+            if (!button) return; // no button
+
+            /** command */
+
+            try {
+                await button.run(client, interaction, params); // run button command
+
+            } catch (err) { // error
+                if (err) {
                     console.error(` >>> ${err}`.brightRed);
 
                     return interaction.reply({

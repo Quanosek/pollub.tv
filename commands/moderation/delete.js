@@ -7,7 +7,7 @@ const { MessageEmbed } = require('discord.js');
 
 const autoDelete = require('../../functions/autoDelete.js');
 
-/** COMMAND */
+/** DELETE COMMAND */
 
 module.exports = {
     name: 'delete',
@@ -17,9 +17,9 @@ module.exports = {
 
     async run(client, prefix, msg, args) {
 
-        const amount = parseInt(args[0]) + 1; // define
+        const amount = parseInt(args[0]) + 1; // define amount
 
-        /** error */
+        /** ERROR */
 
         if (!amount) {
 
@@ -34,7 +34,9 @@ module.exports = {
 
         };
 
-        if (args[1]) { // if amount
+        /** WITH FILTER */
+
+        if (args[1]) {
 
             /** define */
 
@@ -100,7 +102,9 @@ module.exports = {
                 }).then(msg => autoDelete(msg, 10));
             });
 
-        } else { // if no target
+        } else {
+
+            /** WITHOUT FILTER */
 
             return msg.channel.bulkDelete(amount, true).then(m => {
 

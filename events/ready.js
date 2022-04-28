@@ -13,7 +13,7 @@ module.exports = {
     async run(client) {
 
         // on ready message
-        console.log(realDate() + ' Bot ' + process.env.NAME.underline + ' is ready!');
+        console.log(realDate() + ' Bot is ready!'.brightYellow);
 
         // bot activity
         client.user.setActivity('najlepsze wykłady', { type: 'LISTENING' });
