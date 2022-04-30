@@ -12,7 +12,7 @@ const autoDelete = require('../../functions/autoDelete.js');
 module.exports = {
     name: 'help',
     aliases: ['h'],
-    description: 'Pomoc wszelaka!',
+    description: 'Wiadomość informacyjna',
 
     async run(client, prefix, msg, args) {
 

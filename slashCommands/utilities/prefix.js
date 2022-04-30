@@ -9,7 +9,7 @@ const { MessageEmbed } = require('discord.js');
 
 module.exports = {
     name: 'prefix',
-    description: 'Pokazuje prefix bota.',
+    description: 'Pokazuje prefix bota',
 
     async run(client, interaction) {
 

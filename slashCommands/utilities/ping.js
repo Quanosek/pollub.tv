@@ -9,7 +9,7 @@ const { MessageEmbed } = require('discord.js');
 
 module.exports = {
     name: 'ping',
-    description: 'Ping-Pong!',
+    description: 'Ping-pong',
 
     async run(client, interaction) {
 

@@ -12,7 +12,7 @@ const autoDelete = require('../../functions/autoDelete.js');
 module.exports = {
     name: 'delete',
     aliases: ['d'],
-    description: 'Usuwa określoną liczbę wiadomości z kanału.',
+    description: 'Usuwa określoną liczbę wiadomości z kanału',
     permissions: ['MANAGE_MESSAGES'],
 
     async run(client, prefix, msg, args) {

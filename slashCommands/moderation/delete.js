@@ -11,19 +11,18 @@ const autoDelete = require('../../functions/autoDelete.js');
 
 module.exports = {
     name: 'delete',
-    aliases: ['d'],
-    description: 'Usuwa określoną liczbę wiadomości z kanału.',
+    description: 'Usuwa określoną liczbę wiadomości z kanału',
     permissions: ['MANAGE_MESSAGES'],
 
     options: [{
             name: 'amout',
-            description: 'Określ, ile wiadomości ma zostać usuniętych.',
+            description: 'Określ, ile wiadomości ma zostać usuniętych',
             type: 'NUMBER',
             required: true,
         },
         {
             name: 'target',
-            description: 'Wybierz użytkownika, którego wiadomości chcesz usunąć.',
+            description: 'Wybierz użytkownika, którego wiadomości chcesz usunąć',
             type: 'USER',
         },
     ],
